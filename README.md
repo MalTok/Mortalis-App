@@ -60,7 +60,7 @@ The app lets you add necrologies of your late realtives, light them multiple vir
 
 Ready features:
 
-- Necrology adding:
+- <b>Necrology adding</b>:
 <ul>
   <li>form with validated required fields</li>
   <li>personal data of late person, funeral details, picking kinship from database list and other minor features</li>
@@ -69,37 +69,37 @@ Ready features:
   <li>verification with activation code via e-mail message</li>
 </ul>
 
-- Candle adding:
+- <b>Candle adding:</b>
 <ul>
   <li>form with validated required fields</li>
   <li>ability to light a candle for 30 days</li>
   <li>verification with activation code via e-mail message</li>
 </ul>
 
-- Condolences adding:
+- <b>Condolences adding:</b>
 <ul>
   <li>form with validated required fields</li>
   <li>ability to add text and signature of person adding</li>
   <li>verification with activation code via e-mail message</li>
 </ul>
 
-- showing only previously activated necrologies, candles and condolences in entire service
+- <b>showing only previously activated necrologies, candles and condolences in entire service</b>
 
-- showing last 10 added necrologies on main page as a basic information preview
+- <b>showing last 10 added necrologies on main page as a basic information preview</b>
 
-- searching through necrology database
+- <b>searching through necrology database</b>
 
-- admin / moderator account for simple moderation of added necrologies and condolences (currently available only removing option)
+- <b>admin / moderator account for simple moderation of added necrologies and condolences (currently available only removing option)</b>
 
-- automaticaly removed records from database when:
+- <b>automaticaly removed records from database when:</b>
 <ul>
   <li>expired (necrologies, candles)</li>
   <li>not activated by user (necrologies, candles and condolences)</li>
 </ul>
 
-- simple API for potential local services (ability to get data such as total necrologies number in database, list of necrologies with particular name or place of funeral, single necrology by known Id numer, etc., in JSON format)
+- <b>simple API for potential local services (ability to get data such as total necrologies number in database, list of necrologies with particular name or place of funeral, single necrology by known Id numer, etc., in JSON format)</b>
 
-- added instruction, FAQ, website regulations
+- <b>added instruction, FAQ, website regulations</b>
 
 ## Screenshots
 
