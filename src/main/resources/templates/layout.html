@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="https://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head layout:fragment="head">
+    <meta charset="UTF-8">
+    <title layout:title-pattern="$CONTENT_TITLE-$LAYOUT_TITLE">Mortalis</title>
+    <link th:replace="~{fragment::bootstrap}">
+    <link th:replace="~{fragment::default-css}">
+    <script th:replace="~{fragment::fontawesome-script}"></script>
+</head>
+<body>
+<div class="container">
+    <header th:replace="~{fragment::header}">Nagłówek</header>
+    <main layout:fragment="content">Treść</main>
+    <footer th:replace="~{fragment::footer}">Stopka</footer>
+</div>
+<script th:replace="~{fragment::bootstrap-script}"></script>
+</body>
+</html>

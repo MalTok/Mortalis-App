@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout}">
+<head>
+    <title>Zapal świeczkę</title>
+</head>
+<body>
+<main layout:fragment="content">
+    <div class="main-page-container">
+        <div>
+            <p>Wirtualna świeczka zostanie w Twoim imieniu zapalona na 30 dni. W celu weryikacji należy kliknąć lub
+                skopiować do przeglądarki link weryfikacyjny, który przyjdzie na podany tutaj adres e-mail<span
+                        class="asterisk">*</span>.</p>
+            <p><span class="asterisk">*</span> Nie udostępniamy adresu e-mail innym podmiotom, wykorzystujemy go
+                jedynie w celu weryfikacji.</p>
+        </div>
+        <div class="section-title">
+            <p>Formularz</p>
+            <hr>
+        </div>
+        <form th:action="@{/zapal-swieczke/aktywacja}" action="/zapal-swieczke/aktywacja" method="post"
+              th:object="${candle}">
+            <label class="form-label">
+                <input type="hidden" th:field="*{necrologyId}">
+            </label>
+            <label class="form-label">
+                <span class="asterisk">*</span>E-mail do weryfikacji
+                <input class="form-control" type="email" placeholder="jan@kowalski.pl" th:field="*{email}">
+            </label>
+            <p th:errors="*{email}" class="error">Błędny e-mail</p>
+            <button class="buttons" type="submit">ZAPAL ŚWIECZKĘ</button>
+            <div class="asterisk-container">
+                <span class="asterisk">*</span>
+                <p class="asterisk-text">pola oboiązkowe</p>
+            </div>
+        </form>
+    </div>
+</main>
+</body>
+</html>

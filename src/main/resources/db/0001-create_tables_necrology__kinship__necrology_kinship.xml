@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                          http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet id="0001-1" author="mt">
+        <createTable tableName="necrology">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="name" type="VARCHAR(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="birth_date" type="DATE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="death_date" type="DATE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="place_of_origin" type="VARCHAR(100)"/>
+            <column name="place_of_funeral" type="VARCHAR(100)"/>
+            <column name="gender" type="VARCHAR(6)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="photoUrl" type="VARCHAR(2000)"/>
+            <column name="title" type="VARCHAR(115)"/>
+            <column name="add_cross_and_late" type="BOOLEAN"/>
+            <column name="removing_date" type="TIMESTAMP"/>
+            <column name="funeral_details" type="VARCHAR(400)"/>
+            <column name="additional_info" type="VARCHAR(200)"/>
+            <column name="accepted_terms" type="BOOLEAN"/>
+            <column name="necrology_identifier" type="VARCHAR(300)"/>
+            <column name="code" type="VARCHAR(500)"/>
+            <column name="activated" type="BOOLEAN"/>
+            <column name="from_email" type="VARCHAR(500)"/>
+        </createTable>
+
+        <createTable tableName="kinship">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="name" type="VARCHAR(255)"/>
+            <column name="pl_name" type="VARCHAR(255)"/>
+        </createTable>
+
+        <createTable tableName="necrology_kinship">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="necrology_id" type="BIGINT"/>
+            <column name="kinship_id" type="BIGINT"/>
+        </createTable>
+        <addForeignKeyConstraint baseTableName="necrology_kinship"
+                                 baseColumnNames="necrology_id"
+                                 constraintName="fk_necrology_kinship_necrology_id__necrology_id"
+                                 referencedTableName="necrology"
+                                 referencedColumnNames="id"/>
+        <addForeignKeyConstraint baseTableName="necrology_kinship"
+                                 baseColumnNames="kinship_id"
+                                 constraintName="fk_necrology_kinship_kinship_id__kinship_id"
+                                 referencedTableName="kinship"
+                                 referencedColumnNames="id"/>
+    </changeSet>
+
+</databaseChangeLog>
+
+

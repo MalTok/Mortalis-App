@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout}">
+<head>
+    <title>Brak aktywacji</title>
+</head>
+<body>
+<main layout:fragment="content">
+    <div class="main-page-container">
+        <p>Link nie został jeszcze aktywowany.</p>
+        <p>Przejdź do swojej skrzynki e-mail i spróbuj użyć przesłanego linku,
+            a w przypadku niepowodzenia powtórz cały proces ponownie.</p>
+
+        <p>Możesz zamknąć tą stronę albo przejść na stronę główną:</p>
+        <a th:href="@{/}" href="/">STRONA GŁÓWNA</a>
+    </div>
+</main>
+</body>
+</html>

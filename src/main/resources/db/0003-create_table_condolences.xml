@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                          http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet id="0003-1" author="mt">
+        <createTable tableName="condolences">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="from_name" type="VARCHAR(500)"/>
+            <column name="from_email" type="VARCHAR(500)"/>
+            <column name="message" type="VARCHAR(2000)"/>
+            <column name="code" type="VARCHAR(500)"/>
+            <column name="activated" type="BOOLEAN"/>
+            <column name="necrology_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addForeignKeyConstraint baseTableName="condolences"
+                                 baseColumnNames="necrology_id"
+                                 constraintName="fk_condolences_necrology_id__necrology_id"
+                                 referencedTableName="necrology"
+                                 referencedColumnNames="id"/>
+    </changeSet>
+
+</databaseChangeLog>

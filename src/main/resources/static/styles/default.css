@@ -1,0 +1,516 @@
+/* DEFAULT STYLES */
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin: auto;
+    background-color: black;
+    color: white;
+}
+
+.header-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin: auto;
+    width: 100%;
+    min-height: 150px;
+}
+
+.logo-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: center;
+    width: 250px;
+    line-height: 1;
+}
+
+.flame > i {
+    padding-right: 23px;
+    color: red;
+}
+
+.app-name {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    font-family: "Archivo Black", sans-serif;
+    color: white;
+    font-size: xx-large;
+}
+
+.app-subtitle {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    font-family: "Archivo Black", sans-serif;
+    color: white;
+    font-size: small;
+}
+
+.main-menu-container {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    column-gap: 15px;
+    margin: 10px;
+    width: 60%;
+}
+
+header,
+main,
+footer {
+    width: 100%;
+}
+
+.footer-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    width: 100%;
+    background-color: black;
+}
+
+.footer-details {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    background-color: black;
+    color: white;
+    height: 80px;
+    width: 100%;
+}
+
+.buttons {
+    border: solid white medium;
+    min-width: min-content;
+    border-radius: 10px;
+    padding: 5px;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+    font-weight: bolder;
+}
+
+a:hover {
+    color: grey;
+}
+
+p {
+    margin: 0;
+}
+
+.section-title {
+    font-size: xx-large;
+    font-weight: bold;
+    max-width: fit-content;
+}
+
+.main-page-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    row-gap: 25px;
+}
+
+.hidden {
+    display: none;
+}
+
+/* FORM */
+
+.mb-3 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.form-label {
+    margin-bottom: 0;
+    width: 80%;
+}
+
+textarea {
+    height: 200px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    width: 60%;
+    row-gap: 10px;
+}
+
+.asterisk-container {
+    display: flex;
+    flex-direction: row;
+    column-gap: 2px;
+}
+
+.asterisk-text {
+    font-size: medium;
+    font-style: italic;
+}
+
+.asterisk {
+    color: red;
+}
+
+/* PREVIEW STYLES */
+
+.preview-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: space-evenly;
+    width: 100%;
+    background-color: black;
+    color: white;
+}
+
+.necrology-preview {
+    display: flex;
+    flex-direction: column;
+    background-image: url("../pics/necro1.jpg");
+    background-size: cover;
+    width: 640px;
+    height: 427px;
+}
+
+.necrology-preview > a,
+.necrology-preview-box {
+    height: 100%;
+}
+
+.necrology-preview-title {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: large;
+    height: 30%;
+}
+
+.necrology-preview-name {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: xxx-large;
+    height: 30%;
+}
+
+.necrology-preview-dates {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    height: 20%;
+}
+
+.necrology-preview-single-date {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    column-gap: 10px;
+    font-size: large;
+}
+
+.necrology-preview-places {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 20%;
+    font-size: x-large;
+}
+
+/* NECROLOGY-FORM STYLES */
+
+.necrology-form-preview-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    overflow-x: scroll;
+}
+
+.necrology-form-necrology-preview {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 793px;
+    height: 529px;
+    background-image: url("../pics/necro1.jpg");
+    background-color: black;
+    background-size: cover;
+    color: white;
+    margin: auto;
+}
+
+.necrology-form-necrology-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 85%;
+    width: 90%;
+    font-size: small;
+    margin: auto;
+}
+
+#nameInfo,
+#titleInfo,
+#funeralDetailsInfo,
+#additionalInfoInfo {
+    color: red;
+}
+
+/* SINGLE-NECROLOGY STYLES */
+
+.single-necrology {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 1158px;
+    height: 772px;
+    background-image: url("../pics/necro1.jpg");
+    background-size: cover;
+    margin: auto;
+}
+
+
+.single-necrology-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 85%;
+    width: 90%;
+    font-size: large;
+    margin: auto;
+}
+
+.single-necrology-entry {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-left: 190px;
+    width: 80%;
+    height: 10%;
+}
+
+.single-necrology-entry > p > span:nth-child(1) {
+    font-weight: bold;
+}
+
+.single-necrology-kinship {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 80%;
+    height: 10%;
+    font-size: 150%;
+}
+
+.single-necrology-person {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 80%;
+    height: 30%;
+}
+
+.single-necrology-late {
+    height: 30%;
+    font-size: 120%;
+}
+
+.single-necrology-name {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    height: 70%;
+    font-size: 270%;
+}
+
+.single-necrology-title {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 150%;
+    width: 80%;
+    height: 10%;
+}
+
+.single-necrology-place {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 60%;
+    height: 5%;
+}
+
+.single-necrology-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 70%;
+    height: 25%;
+}
+
+.single-necrology-additional {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 60%;
+    height: 10%;
+}
+
+.single-necrology-light-candles-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin-top: 25px;
+    row-gap: 15px;
+}
+
+.single-necrology-candles-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 90%;
+}
+
+.single-necrology-single-candle-container {
+    width: 70px;
+}
+
+.single-necrology-candle {
+    height: 60px;
+}
+
+.single-necrology-condolences-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin-top: 25px;
+    row-gap: 15px;
+}
+
+.single-necrology-single-condolences-container {
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+}
+
+.single-necrology-single-condolences-from {
+    font-size: large;
+    font-weight: bold;
+}
+
+.single-necrology-single-condolences-text {
+    font-size: large;
+}
+
+/* HOME PAGE STYLES */
+
+.index-app-info-container {
+    position: relative;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0;
+}
+
+.index-app-info-container > img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.index-app-info-text {
+    position: absolute;
+    left: 10%;
+    top: 10%;
+    color: #fff;
+    padding: 10px;
+    width: 80%;
+    font-size: 2vw;
+    font-weight: bold;
+    border-radius: 5px;
+}
+
+.index-instruction {
+    color: red;
+}
+
+.index-add-necrology {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: solid thick;
+    border-color: orange;
+    width: 200px;
+    height: 200px;
+    border-radius: 100px;
+    margin-top: 100px;
+    background-color: grey;
+}
+
+.index-search-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100px;
+    background-color: darkslategray;
+}
+
+.index-search-form {
+    flex-direction: row;
+    background-color: white;
+    min-width: fit-content;
+}

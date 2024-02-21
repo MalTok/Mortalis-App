@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout}">
+<head>
+    <title>Napisz kondolencje</title>
+</head>
+<body>
+<main layout:fragment="content">
+    <div class="main-page-container">
+        <div>
+            <p>Tutaj możesz zostawić najbliższym zmarłej osoby kondolencje lub np. wspomnienie o zmarłym.</p>
+            <p>W celu weryfikacji należy kliknąć lub skopiować do przeglądarki link weryfikacyjny, który przyjdzie na
+                podany tutaj adres e-mail<span class="asterisk">*</span>.</p>
+            <p>Uwaga! Ta strona jest moderowana, z szacunku do osoby zmarłej i jej najbliższych nie umieszczaj
+                niestosownych lub obraźliwych tekstów w sekcji kondolencji.</p>
+            <p>Zastrzegamy sobie prawo do usuwania takich kondolencji w całości.</p>
+            <div class="asterisk-container">
+                <span class="asterisk">*</span>
+                <p class="asterisk-text">&nbsp;Nie udostępniamy adresu e-mail innym podmiotom, wykorzystujemy go
+                    jedynie w celu weryfikacji.</p>
+            </div>
+        </div>
+        <div class="section-title">
+            <p>Formularz</p>
+            <hr>
+        </div>
+        <form th:action="@{/kondolencje/aktywacja}" action="/kondolencje/aktywacja"
+              method="post"
+              th:object="${condolences}">
+            <label class="form-label">
+                <input class="form-control" type="hidden" th:field="*{necrologyId}">
+            </label>
+            <label class="form-label">
+                Twój podpis (jeśli nie podasz zostanie automatycznie ustawiony podpis Anonim)
+                <input class="form-control" type="text" placeholder="Ania z rodziną" th:field="*{fromName}">
+            </label>
+            <label class="form-label">
+                <span class="asterisk">*</span>E-mail do weryfikacji
+                <input class="form-control" type="email" placeholder="jan@kowalski.pl" th:field="*{fromEmail}">
+            </label>
+            <p th:errors="*{fromEmail}" class="error">Błędny e-mail</p>
+            <label class="form-label">
+                Treść kondolencji lub wspomnienie
+                <textarea class="form-control" placeholder="Wyrazy najgłębszego współczucia..."
+                          th:field="*{message}"></textarea>
+            </label>
+            <button class="buttons">ZOSTAW KONDOLENCJE</button>
+            <div class="asterisk-container">
+                <span class="asterisk">*</span>
+                <p class="asterisk-text">pola oboiązkowe</p>
+            </div>
+        </form>
+    </div>
+</main>
+</body>
+</html>

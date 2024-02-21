@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout}">
+<head>
+    <title>Nekrolog</title>
+</head>
+<body>
+<main layout:fragment="content">
+    <div class="main-page-container">
+        <div class="single-necrology">
+            <div class="single-necrology-box">
+                <div class="single-necrology-entry">
+                    <p>Z ogromnym smutkiem zawiadamiamy, że dnia
+                        <span th:text="${#temporals.format(necrology.deathDate, 'dd.MM.yyyy')}">20.01.2024</span>
+                        roku, w wieku
+                        <span th:text="${necrology.ageString}">100 lat</span>
+                        <span th:text="| ${necrology.genderVerb}|">odszedł Najdroższy</span>
+                    </p>
+                </div>
+                <div class="single-necrology-kinship">
+                    <p class="kinship" th:text="${necrology.kinship}">Dziadek, Tata, Syn</p>
+                </div>
+                <div class="single-necrology-person">
+                    <div class="single-necrology-late" th:if="${necrology.addCrossAndLate}">
+                        <span>Ś.</span>
+                        <i class="fa-solid fa-cross fa-3x"></i>
+                        <span>P.</span>
+                    </div>
+                    <div class="single-necrology-name">
+                        <p th:text="${necrology.name}">Jan Kowalski</p>
+                    </div>
+                </div>
+                <div class="single-necrology-title">
+                    <p th:text="${necrology.title}">Artysta, filantrop, lekarz</p>
+                </div>
+                <div class="single-necrology-place">
+                    <p th:text="|Miejsce pogrzebu: ${necrology.placeOfFuneral}|">Miejsce pogrzebu: Warszawa</p>
+                </div>
+                <div class="single-necrology-info" th:if="${necrology.funeralDetails ne ''}">
+                    <p th:text="${necrology.funeralDetails}">Pogrzeb odbędzie się...</p>
+                </div>
+                <div class="single-necrology-additional" th:if="${necrology.additionalInfo ne ''}">
+                    <p th:text="${necrology.additionalInfo}">Dodatkowe informacje: Zamiast zniczy prosimy wpłacić datek
+                        na dowolny cel charytatywny</p>
+                </div>
+            </div>
+        </div>
+        <div class="single-necrology-light-candles-container">
+            <div>
+                <div class="section-title">
+                    <p>Zapalone świeczki</p>
+                    <hr>
+                </div>
+                <div class="single-necrology-candles-container">
+                    <div th:if="${necrology.candlesAmount == 0}">
+                        <p>Nikt jeszcze nie zapalił żadnej świeczki.</p>
+                    </div>
+                    <div class="single-necrology-single-candle-container"
+                         th:each="i : ${#numbers.sequence(0, necrology.candlesAmount - 1)}" th:unless="${necrology.candlesAmount == 0}">
+                        <div>
+                            <img class="single-necrology-candle" th:src="@{/pics/candle-burning_white.png}"
+                                 src="/pics/candle-burning_white.png"
+                                 alt="Obrazek palącej się świeczki w kolorze czarnym">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <a th:href="@{|/nekrolog/${necrology.necrologyIdentifier}/zapal-swieczke|}">ZAPAL ŚWIECZKĘ</a>
+            </div>
+        </div>
+        <div class="single-necrology-condolences-container">
+            <div class="section-title">
+                <p>Kondolencje</p>
+                <hr>
+            </div>
+            <div>
+                <a th:href="@{|/nekrolog/${necrology.necrologyIdentifier}/dodaj-kondolencje|}">ZOSTAW KONDOLENCJE</a>
+            </div>
+            <div class="single-necrology-single-condolences-container">
+                <div th:if="${necrology.condolences.size() == 0}">
+                    <p>Nikt jeszcze nie zostawił kondolencji.</p>
+                </div>
+                <div class="single-necrology-single-condolences" th:each="condolence: ${necrology.condolences}" th:unless="${necrology.condolences.size() == 0}">
+                    <div class="single-necrology-single-condolences-from" th:text="${condolence.fromName}">Anna Nowak z rodziną</div>
+                    <div class="single-necrology-single-condolences-text" th:text="${condolence.message}">Wyrazy współczucia dla Was</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+</body>
+</html>

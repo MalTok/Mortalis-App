@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                          http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet id="0007-1" author="mt">
+        <insert tableName="page">
+            <column name="id" value="1"/>
+            <column name="title" value="Regulamin"/>
+            <column name="url" value="regulamin"/>
+            <column name="content" valueClobFile="./testdata/page/regulations.html"/>
+        </insert>
+
+        <insert tableName="page">
+            <column name="id" value="2"/>
+            <column name="title" value="Instrukcja"/>
+            <column name="url" value="instrukcja"/>
+            <column name="content" valueClobFile="./testdata/page/instruction.html"/>
+        </insert>
+
+        <insert tableName="page">
+            <column name="id" value="3"/>
+            <column name="title" value="FAQ"/>
+            <column name="url" value="faq"/>
+            <column name="content" valueClobFile="./testdata/page/faq.html"/>
+        </insert>
+
+        <insert tableName="page">
+            <column name="id" value="4"/>
+            <column name="title" value="API"/>
+            <column name="url" value="api"/>
+            <column name="content" valueClobFile="./testdata/page/api.html"/>
+        </insert>
+    </changeSet>
+
+</databaseChangeLog>

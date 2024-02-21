@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout}">
+<head>
+    <title>Wszystkie nekrologi</title>
+</head>
+<body>
+<main layout:fragment="content">
+    <div class="main-page-container">
+        <div class="section-title">
+            <p>Wszystkie nekrologi</p>
+            <hr>
+        </div>
+        <div>
+            <p>Po kliknięciu w wybrany nekrolog zostaniesz przeniesiony do jego szczegółów.</p>
+        </div>
+        <div th:replace="~{fragment::necrology-preview}"></div>
+    </div>
+</main>
+</body>
+</html>

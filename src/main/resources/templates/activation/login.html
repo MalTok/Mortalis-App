@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout}">
+<head>
+    <title>Login</title>
+</head>
+<body>
+<main layout:fragment="content">
+    <div class="main-page-container">
+        <i class="fa-solid fa-user-lock fa-4x"></i>
+        <form th:action="@{/login}" action="/login" method="post">
+            <label class="form-label">
+                Login (Twój email)
+                <input type="email" class="form-control" name="username" placeholder="jan@kowalski.pl">
+            </label>
+            <label class="form-label">
+                Hasło
+                <input type="password" class="form-control" name="password" placeholder="tajneHasło12345#">
+            </label>
+            <button class="buttons" type="submit">ZALOGUJ</button>
+        </form>
+    </div>
+</main>
+</body>
+</html>

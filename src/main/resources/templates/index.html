@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout}">
+<head>
+    <title>Strona główna</title>
+</head>
+<body>
+<main layout:fragment="content">
+    <div class="main-page-container">
+        <div class="index-search-container">
+            <form class="index-search-form" th:action="@{/szukaj}" action="/szukaj" method="get">
+                <label class="form-label">
+                    <input name="word" class="form-control" type="search" placeholder="Imię, nazwisko, miejscowość">
+                </label>
+                <button class="buttons"><i class="fa-solid fa-magnifying-glass"></i></button>
+            </form>
+        </div>
+        <div class="index-app-info-container">
+            <div class="index-app-info-text">
+                <div>
+                    <p>MORTALIS to miejsce, w którym w prosty i przejrzysty sposób zamieścisz nekrolog bliskiej Ci osoby
+                        lub złożysz kondolencje bliskim innego zmarłego.</p>
+                    <ul>
+                        <li>poinformuj rodzinę i znajomych o uroczystościach pogrzebowych</li>
+                        <li>upamiętnij osobę, która odeszła</li>
+                        <li>złóż kondolencje w komentarzu</li>
+                        <li>zapal wirtualną świeczkę</li>
+                    </ul>
+                    <p>Nie wiesz jak zacząć?</p>
+                    <p>Zapoznaj się z krótką <a th:href="@{/instrukcja}" href="/instrukcja" class="index-instruction">INSTRUKCJĄ</a>
+                        dodawania nekrologów.
+                    </p>
+                </div>
+                <div class="index-add-necrology">
+                    <a th:href="@{/nekrolog/dodaj}" href="/nekrolog/dodaj">
+                        <div>
+                            <p>DODAJ NEKROLOG</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <img th:src="@{/pics/widok-z-przodu-bialej-swiecy-w-ciemnosci.jpg}"
+                 src="/pics/widok-z-przodu-bialej-swiecy-w-ciemnosci.jpg"
+                 alt="Widok z przodu bialej swiecy w ciemnosci">
+        </div>
+        <div class="mb-3">
+            <div class="section-title">
+                <p>Ostatnio dodane</p>
+                <hr>
+            </div>
+            <div th:replace="~{fragment::necrology-preview}"></div>
+        </div>
+    </div>
+</main>
+</body>
+</html>

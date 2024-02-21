@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout}">
+<head>
+    <title>Sekcja moderacji</title>
+</head>
+<body>
+<main layout:fragment="content">
+    <div class="main-page-container">
+        <a th:href="@{/administracja/moderacja/nekrologi}" href="/administracja/moderacja/kondolencje">Moderacja nekrologów</a>
+        <a th:href="@{/administracja/moderacja/kondolencje}" href="/administracja/moderacja/kondolencje">Moderacja kondolencji</a>
+    </div>
+</main>
+</body>
+</html>

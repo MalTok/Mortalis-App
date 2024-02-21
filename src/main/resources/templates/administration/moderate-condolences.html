@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout}">
+<head>
+    <title>Moderacja kondolencji</title>
+</head>
+<body>
+<main layout:fragment="content">
+    <div class="main-page-container">
+        <div class="section-title">
+            <p>Zapisane kondolencje</p>
+            <hr>
+        </div>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>Od</th>
+                <th>Treść</th>
+                <th>Akcja</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="condolence : ${condolences}">
+                <td th:text="${condolence.id}">1</td>
+                <td th:text="${condolence.fromName}">Anna</td>
+                <td th:text="${condolence.message}">Wyrazy współczucia</td>
+                <td>
+                    <form th:action="@{|/administracja/moderacja/kondolencje/${condolence.id}/usun|}"
+                          method="post">
+                        <button>
+                            <i class="fa-solid fa-trash-can"></i>
+                        </button>
+                    </form>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</main>
+</body>
+</html>
