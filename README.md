@@ -26,35 +26,83 @@ The app lets you add necrologies of your late realtives, light them multiple vir
 
 ## Technologies Used
 
-<ul>
-  <li>[![Java][Java.com]][Java-url] - version 17</li>
-  <li>[![Thymeleaf][Thymeleaf.org]][Thymeleaf-url] - version 3.2.1
-    <ul>
-      <li>Thymeleaf layout dialect - version 3.3.0</li>
-      <li>Thymeleaf extras spring security - version 3.1.2</li>
-    </ul>
-  </li>
-  <li>[![SpringBoot][SpringBoot.io]][SpringBoot-url] - version 3.2.2
-    <ul>
-      <li>Spring Data JPA</li>
-      <li>Spring Security</li>
-      <li>Spring Validation</li>
-      <li>Spring Web</li>
-      <li>Spring Test</li>
-      <li>Spring Mail</li>
-    </ul>
-  </li>
-  <li>[![Liquibase][Liquibase.org]][Liquibase-url] - version 4.24.0</li>
-  <li>H2 Database - version 2.2.224</li>
-  <li>[![MySQL][MySQL.com]][MySQL-url]</li>
-  <li>Lombok - version 1.18.30</li>
-  <li>[![HTML]][HTML-url]</li>
-  <li>[![CSS]][CSS-url] (Flexbox)</li>
-  <li>[![JavaScript]][JavaScript-url]</li>
-  <li>[![jQuery][jQuery.com]][jQuery-url]</li>
-  <li>[![Bootstrap][Bootstrap.com]][Bootstrap-url] - version 5.3.2</li>
-  <li>[![FontAwesome][FontAwesome.com]][FontAwesome-url]</li>
-</ul>
+<div>
+  <div>
+    <a href="https://www.java.com/">
+      <img src="https://img.shields.io/badge/Java-%23F80000?style=for-the-badge&logo=oracle" alt="red button oracle java"/>
+    </a> - version 17
+  </div>
+  <div>
+    <div>
+      <a href="https://www.thymeleaf.org/">
+        <img src="https://img.shields.io/badge/Thymeleaf-%23005F0F?style=for-the-badge&logo=thymeleaf"/>
+      </a> - version 3.2.1
+    </div>
+    <div>
+      <ul>
+        <li>Thymeleaf layout dialect - version 3.3.0</li>
+        <li>Thymeleaf extras spring security - version 3.1.2</li>
+      </ul>
+    </div>
+  </div>
+  <div>
+    <div>
+      <a href="https://spring.io/projects/spring-boot">
+        <img src="https://img.shields.io/badge/Spring%20Boot-%236DB33F?style=for-the-badge&logo=springboot&logoColor=black"/>
+      </a> - version 3.2.2
+    </div>
+    <div>
+      <ul>
+        <li>Spring Data JPA</li>
+        <li>Spring Security</li>
+        <li>Spring Validation</li>
+        <li>Spring Web</li>
+        <li>Spring Test</li>
+        <li>Spring Mail</li>
+      </ul>
+    </div>
+  </div>
+  <div>
+    <a href="https://www.liquibase.org/">
+      <img src="https://img.shields.io/badge/Liquibase-%232962FF?style=for-the-badge&logo=liquibase&logoColor=black"/>
+    </a> - version 4.24.0
+  </div>
+  <div>
+    <p>H2 Database - version 2.2.224</p>
+  </div>
+  <div>
+    <a href="https://www.mysql.com/">
+      <img src="https://img.shields.io/badge/MySQL-%234479A1?style=for-the-badge&logo=mysql&logoColor=black"/>
+    </a>
+  </div>
+  <div>
+    <p>Lombok - version 1.18.30</p>
+  </div>
+  <div>
+    <img src="https://img.shields.io/badge/JavaScript-%23F7DF1E?style=for-the-badge&logo=javascript&logoColor=black"/>
+  </div>
+  <div>
+    <a href="https://jquery.com">
+      <img src="https://img.shields.io/badge/jQuery-0769AD?style=for-the-badge&logo=jquery&logoColor=white"/>
+    </a>
+  </div>
+  <div>
+    <img src="https://img.shields.io/badge/HTML-%23E34F26?style=for-the-badge&logo=html5&logoColor=black"/>
+  </div>
+  <div>
+    <img src="https://img.shields.io/badge/CSS-%231572B6?style=for-the-badge&logo=css3&logoColor=black"/>
+  </div>
+  <div>
+    <a href="https://getbootstrap.com">
+      <img src="https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white"/>
+    </a> - version 5.3.2
+  </div>
+  <div>
+    <a href="https://fontawesome.com/">
+      <img src="https://img.shields.io/badge/FontAwesome-%23528DD7?style=for-the-badge&logo=fontawesome&logoColor=black"/>
+    </a>
+  </div>
+</div>
 
 ## Features
 
@@ -120,7 +168,7 @@ Proceed to describe how to install / setup one's local environment / get started
 
 ## Project Status
 
-Project is: _in progress_
+Project is: _in progress_<br/>
 Working on new, possible features.
 
 ## Room for Improvement
@@ -146,24 +194,3 @@ To do:
 ## Contact
 
 Feel free to contact me via GitHub!
-
-[Java.com]: https://img.shields.io/badge/Java-%23F80000?style=for-the-badge&logo=oracle
-[Java-url]: https://www.java.com/
-[Thymeleaf.org]: https://img.shields.io/badge/Thymeleaf-%23005F0F?style=for-the-badge&logo=thymeleaf
-[Thymeleaf-url]: https://www.thymeleaf.org/
-[SpringBoot.io]: https://spring.io/projects/spring-boot
-[SpringBoot-url]: https://img.shields.io/badge/Spring%20Boot-%236DB33F?style=for-the-badge&logo=springboot&logoColor=black
-[Liquibase.org]: https://img.shields.io/badge/Liquibase-%232962FF?style=for-the-badge&logo=liquibase&logoColor=black
-[Liquibase-url]: https://www.liquibase.org/
-[Bootstrap.com]: https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white
-[Bootstrap-url]: https://getbootstrap.com
-[JQuery.com]: https://img.shields.io/badge/jQuery-0769AD?style=for-the-badge&logo=jquery&logoColor=white
-[JQuery-url]: https://jquery.com
-[MySQL.com]: https://img.shields.io/badge/MySQL-%234479A1?style=for-the-badge&logo=mysql&logoColor=black
-[MySQL-url]: https://www.mysql.com/
-[CSS-url]: https://img.shields.io/badge/CSS-%231572B6?style=for-the-badge&logo=css3&logoColor=black
-[HTML-url]: https://img.shields.io/badge/HTML-%23E34F26?style=for-the-badge&logo=html5&logoColor=black
-[JavaScript-url]: https://img.shields.io/badge/JavaScript-%23F7DF1E?style=for-the-badge&logo=javascript&logoColor=black
-[FontAwesome.com]: https://fontawesome.com/
-[FontAwesome-url]: https://img.shields.io/badge/FontAwesome-%23528DD7?style=for-the-badge&logo=fontawesome&logoColor=black
-
