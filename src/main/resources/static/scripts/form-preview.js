@@ -2,14 +2,12 @@ $(document).ready(function () {
     const $birthDate = $("#birthDate");
     const $deathDate = $("#deathDate");
 
-    $deathDate.on('input', function () {
-        const $deathInput = $(this);
-        const rawDate = $deathInput.val();
-        const formattedDate = moment(rawDate).format('DD.MM.YYYY');
+    $birthDate.on('input', function () {
+        countAge();
+    });
 
-        const $formPreviewDeathDate = $(".form-preview-death-date");
-        $formPreviewDeathDate.text(formattedDate);
-        $formPreviewDeathDate.css('font-weight', 'bold');
+    $deathDate.on('input', function () {
+        countAge();
     });
 
     function countAge() {
@@ -19,10 +17,10 @@ $(document).ready(function () {
         const deathDateValue = $deathDate.val();
 
         if (birthDateValue !== "" && deathDateValue !== "") {
-            const birthDate = moment(birthDateValue).format('DD.MM.YYYY');
-            const deathDate = moment(deathDateValue).format('DD.MM.YYYY');
+            const birthDate = moment(birthDateValue, 'YYYY-MM-DD');
+            const deathDate = moment(deathDateValue, 'YYYY-MM-DD');
 
-            const differenceInMillis = deathDate - birthDate;
+            const differenceInMillis = deathDate.diff(birthDate);
             const differenceInDays = differenceInMillis / (1000 * 60 * 60 * 24);
 
             let ageText;
@@ -46,7 +44,15 @@ $(document).ready(function () {
         }
     }
 
-    countAge();
+    $deathDate.on('input', function () {
+        const $deathInput = $(this);
+        const rawDate = $deathInput.val();
+        const formattedDate = moment(rawDate).format('DD.MM.YYYY');
+
+        const $formPreviewDeathDate = $(".form-preview-death-date");
+        $formPreviewDeathDate.text(formattedDate);
+        $formPreviewDeathDate.css('font-weight', 'bold');
+    });
 
     $("input[name='gender']").on('change', function () {
         const $genderInput = $("input[name='gender']:checked");

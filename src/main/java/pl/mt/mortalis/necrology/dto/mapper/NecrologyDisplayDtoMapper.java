@@ -90,7 +90,7 @@ public class NecrologyDisplayDtoMapper {
         } else if (years == 0 && months == 0) {
             return days + " dni";
         } else {
-            throw new InputMismatchException("Błędnie wprowadzone daty");
+            throw new InputMismatchException("Incorrect dates input");
         }
     }
 }
