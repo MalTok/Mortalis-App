@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout}">
+<head>
+    <title>Edycja kondolencji</title>
+</head>
+<body>
+<main layout:fragment="content">
+    <div class="main-page-container">
+        <div class="section-title">
+            <p>Edycja kondolencji</p>
+            <hr>
+        </div>
+        <form th:action="@{|/administracja/moderacja/kondolencje/${condolencesEdit.id}/aktualizuj|}" method="post" th:object="${condolencesEdit}">
+            <label class="form-label">
+                Id
+                <input class="form-control" type="number" th:field="*{id}" disabled>
+            </label>
+            <label class="form-label">
+                Podpis
+                <input class="form-control" type="text" placeholder="Ania z rodziną" th:field="*{fromName}">
+            </label>
+            <label class="form-label">
+                E-mail
+                <input class="form-control" type="email" placeholder="jan@kowalski.pl" th:field="*{fromEmail}" disabled>
+            </label>
+            <label class="form-label">
+                <span class="asterisk">*</span>Treść kondolencji
+                <textarea class="form-control" placeholder="Wyrazy najgłębszego współczucia..."
+                          th:field="*{message}"></textarea>
+            </label>
+            <p th:errors="*{message}" class="error">Błędny text</p>
+            <button class="buttons">AKTUALIZUJ</button>
+            <div class="asterisk-container">
+                <span class="asterisk">*</span>
+                <p class="asterisk-text">pola oboiązkowe</p>
+            </div>
+        </form>
+    </div>
+</main>
+</body>
+</html>

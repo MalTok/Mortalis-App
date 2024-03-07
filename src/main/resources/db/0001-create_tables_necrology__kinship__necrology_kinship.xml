@@ -24,7 +24,7 @@
             <column name="gender" type="VARCHAR(6)">
                 <constraints nullable="false"/>
             </column>
-            <column name="photoUrl" type="VARCHAR(2000)"/>
+            <column name="picture_bytes" type="BLOB"/>
             <column name="title" type="VARCHAR(115)"/>
             <column name="add_cross_and_late" type="BOOLEAN"/>
             <column name="removing_date" type="TIMESTAMP"/>

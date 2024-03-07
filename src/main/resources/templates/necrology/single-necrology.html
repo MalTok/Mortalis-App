@@ -23,11 +23,19 @@
                 <div class="single-necrology-person">
                     <div class="single-necrology-late" th:if="${necrology.addCrossAndLate}">
                         <span>Ś.</span>
-                        <i class="fa-solid fa-cross fa-3x"></i>
+                        <i class="fa-solid fa-cross fa-2x"></i>
                         <span>P.</span>
                     </div>
-                    <div class="single-necrology-name">
-                        <p th:text="${necrology.name}">Jan Kowalski</p>
+                    <div class="single-necrology-person-info">
+                        <div class="single-necrology-person-photo" th:unless="${necrology.pictureBase64 == null or necrology.pictureBase64.isEmpty()}">
+                            <img th:src="'data:image/jpeg;base64,' + ${necrology.pictureBase64}" alt="Zdjęcie zmarłej osoby"/>
+                        </div>
+                        <div class="single-necrology-person-photo" th:if="${necrology.pictureBase64 == null or necrology.pictureBase64.isEmpty()}">
+                            <i class="fa-solid fa-ribbon fa-5x"></i>
+                        </div>
+                        <div class="single-necrology-name">
+                            <p th:text="${necrology.name}">Jan Kowalski</p>
+                        </div>
                     </div>
                 </div>
                 <div class="single-necrology-title">
@@ -36,10 +44,10 @@
                 <div class="single-necrology-place">
                     <p th:text="|Miejsce pogrzebu: ${necrology.placeOfFuneral}|">Miejsce pogrzebu: Warszawa</p>
                 </div>
-                <div class="single-necrology-info" th:if="${necrology.funeralDetails ne ''}">
+                <div class="single-necrology-info">
                     <p th:text="${necrology.funeralDetails}">Pogrzeb odbędzie się...</p>
                 </div>
-                <div class="single-necrology-additional" th:if="${necrology.additionalInfo ne ''}">
+                <div class="single-necrology-additional">
                     <p th:text="${necrology.additionalInfo}">Dodatkowe informacje: Zamiast zniczy prosimy wpłacić datek
                         na dowolny cel charytatywny</p>
                 </div>

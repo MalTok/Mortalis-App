@@ -4,7 +4,7 @@ import jakarta.mail.MessagingException;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
-import pl.mt.mortalis.ActivationManager;
+import pl.mt.mortalis.mail.ActivationManager;
 import pl.mt.mortalis.candle.dto.CandleFormDto;
 import pl.mt.mortalis.mail.MailService;
 import pl.mt.mortalis.mail.Message;

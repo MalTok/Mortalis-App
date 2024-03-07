@@ -8,28 +8,19 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import pl.mt.mortalis.candle.dto.CandleFormDto;
 import pl.mt.mortalis.condolences.dto.CondolencesFormDto;
-import pl.mt.mortalis.kinship.Kinship;
-import pl.mt.mortalis.kinship.KinshipService;
 import pl.mt.mortalis.necrology.dto.NecrologyDisplayDto;
 import pl.mt.mortalis.necrology.dto.NecrologyFormDto;
 
-import java.util.List;
+import java.io.IOException;
 import java.util.Optional;
 
 @RequestMapping("/nekrolog")
 @Controller
 public class NecrologyController {
     private final NecrologyService necrologyService;
-    private final KinshipService kinshipService;
 
-    public NecrologyController(NecrologyService necrologyService, KinshipService kinshipService) {
+    public NecrologyController(NecrologyService necrologyService) {
         this.necrologyService = necrologyService;
-        this.kinshipService = kinshipService;
-    }
-
-    @ModelAttribute("kinshipList")
-    List<Kinship> kinshipList() {
-        return kinshipService.findAll();
     }
 
     @GetMapping("/dodaj")
@@ -46,7 +37,11 @@ public class NecrologyController {
             model.addAttribute("necrology", necrologyFormDto);
             return "/necrology/necrology-form";
         } else {
-            necrologyService.activate(necrologyFormDto);
+            try {
+                necrologyService.activate(necrologyFormDto);
+            } catch (IOException e) {
+                throw new RuntimeException("File could not be saved");
+            }
             return "redirect:/nekrolog/nieaktywny";
         }
     }

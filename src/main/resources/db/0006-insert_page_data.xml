@@ -5,7 +5,7 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
                           http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
 
-    <changeSet id="0007-1" author="mt">
+    <changeSet id="0006-1" author="mt">
         <insert tableName="page">
             <column name="id" value="1"/>
             <column name="title" value="Regulamin"/>

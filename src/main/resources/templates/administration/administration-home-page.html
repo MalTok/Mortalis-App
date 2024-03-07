@@ -7,8 +7,17 @@
 <body>
 <main layout:fragment="content">
     <div class="main-page-container">
-        <a th:href="@{/administracja/moderacja/nekrologi}" href="/administracja/moderacja/kondolencje">Moderacja nekrologów</a>
-        <a th:href="@{/administracja/moderacja/kondolencje}" href="/administracja/moderacja/kondolencje">Moderacja kondolencji</a>
+        <div>
+            <i class="fa-solid fa-screwdriver-wrench fa-5x"></i>
+        </div>
+        <div class="section-title">
+            <p>Panel administracji</p>
+            <hr>
+        </div>
+        <div class="admin-links">
+            <a th:href="@{/administracja/moderacja/nekrologi}" href="/administracja/moderacja/kondolencje">>> Moderacja nekrologów <<</a>
+            <a th:href="@{/administracja/moderacja/kondolencje}" href="/administracja/moderacja/kondolencje"> >> Moderacja kondolencji <<</a>
+        </div>
     </div>
 </main>
 </body>

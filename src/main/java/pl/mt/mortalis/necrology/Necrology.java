@@ -10,10 +10,10 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
 import pl.mt.mortalis.Gender;
-import pl.mt.mortalis.UploadedFile;
 import pl.mt.mortalis.candle.Candle;
 import pl.mt.mortalis.condolences.Condolences;
 import pl.mt.mortalis.kinship.Kinship;
+import pl.mt.mortalis.validation.NotBadWords;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -30,6 +30,7 @@ public class Necrology {
 
     @Size(min = 2, max = 77)
     @NotBlank
+    @NotBadWords
     private String name;
 
     @NotNull
@@ -50,8 +51,8 @@ public class Necrology {
     @Enumerated(value = EnumType.STRING)
     private Gender gender;
 
-    @OneToOne
-    private UploadedFile file;
+    @Lob
+    private byte[] pictureBytes;
 
     private String title;
 
@@ -78,10 +79,9 @@ public class Necrology {
     @OneToMany(mappedBy = "necrology", cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, orphanRemoval = true)
     private List<Condolences> condolences;
 
-    private String fromEmail;
-
     private String code;
 
     private boolean activated;
 
+    private String fromEmail;
 }

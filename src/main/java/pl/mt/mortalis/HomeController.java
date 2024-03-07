@@ -3,6 +3,7 @@ package pl.mt.mortalis;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import pl.mt.mortalis.necrology.NecrologyService;
 import pl.mt.mortalis.necrology.dto.NecrologyPreviewDto;
@@ -23,9 +24,11 @@ public class HomeController {
         return "index";
     }
 
-    @GetMapping("/wszystkie")
-    String showAll(Model model) {
-        model.addAttribute("necrologies", necrologyService.findAllActivated());
+    @GetMapping("/wszystkie/strona/{page}")
+    String showAll(@PathVariable("page") int page, Model model) {
+        int pageNo = page - 1;
+        model.addAttribute("necrologies", necrologyService.findAllActivated(pageNo));
+        model.addAttribute("currentPage", page);
         return "/necrology/all-necrologies";
     }
 

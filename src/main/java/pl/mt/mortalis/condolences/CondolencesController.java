@@ -26,7 +26,7 @@ public class CondolencesController {
             return "/condolences/condolences-form";
         } else {
             condolencesService.activate(condolencesFormDto);
-            return "redirect:/";
+            return "redirect:/kondolencje/nieaktywny";
         }
     }
 

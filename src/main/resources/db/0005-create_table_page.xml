@@ -10,7 +10,7 @@
     <property name="textType" value="varchar(100000)" dbms="h2"/>
     -->
 
-    <changeSet id="0006-1" author="mt">
+    <changeSet id="0005-1" author="mt">
         <createTable tableName="page">
             <column name="id" type="BIGINT" autoIncrement="true">
                 <constraints nullable="false" primaryKey="true"/>

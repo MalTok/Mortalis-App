@@ -1,1 +1,215 @@
-<h1>Otarte API</h1>
+<h1>Otwarte API</h1>
+<br/>
+<p>Dostęp do danych z API można uzyskać poprzez odpytywanie adresu:</p>
+<code>http://localhost:8080/api/v1/...</code>
+<br/>
+<br/>
+<p>Dane są generowane w formacie JSON.</p>
+<br/>
+<p>
+    W celu testowego odpytania API można użyć programu
+    <a href="https://www.postman.com/">
+        <img src="https://img.shields.io/badge/Postman-%23FF6C37?style=for-the-badge&logo=postman&logoColor=black"
+             alt="Postman logo"/>
+    </a>
+    .
+</p>
+<br/>
+<br/>
+<h2>DOSTĘPNE DANE</h2>
+<br/>
+<div>
+    <h3>Lista wszystkich dodanych nekrologów</h3>
+    <br/>
+    <code>http://localhost:8080/api/v1/necrology</code>
+    <br/>
+    <br/>
+    <div>
+        <p><b>Przkładowe zapytanie GET:</b></p>
+        <p>http://localhost:8080/api/v1/necrology</p>
+        <br/>
+        <p><b>Przykładowa odpowiedź:</b></p>
+        <pre style="overflow: auto;">
+            [
+                {
+                    "name": "Jan Kowalski",
+                    "birthDate": "1948-07-20",
+                    "deathDate": "2024-01-01",
+                    "placeOfOrigin": "Stargard",
+                    "placeOfFuneral": "Warszawa",
+                    "gender": "Mężczyzna",
+                    "title": "Artysta, malarz, filantrop",
+                    "funeralDetails": "Pogrzeb odbędzie się dnia 18.01.2024r., o godzinie 12:15 w Warszawie.Po uroczystosci pogrzebowej nastąpi odprowadzenie urny z prochami zmarłego.",
+                    "additionalInfo": "Rodzina prosi o nieskładanie kondolencji na cmentarzu.",
+                    "activeCandles": 3
+                },
+                {
+                    "name": "Anastazja Nowakowska-Długowska",
+                    "birthDate": "1927-09-11",
+                    "deathDate": "2020-06-28",
+                    "placeOfOrigin": "Olsztyn",
+                    "placeOfFuneral": "Olsztyn",
+                    "gender": "Kobieta",
+                    "title": "Lekarz ortopeda, przewodnicząca Rady Lekarskiej",
+                    "funeralDetails": "Pogrzeb odbędzie się dnia 02.07.2020r., o godzinie 10:15 w Olsztynie.Przed pogrzebem możliwe prywatne pożegnanie ze zmarłą w kaplicy cmentarnej.",
+                    "additionalInfo": "Zamiast zniczy prosimy o wpłatę na dowolny cel charytatywny.",
+                    "activeCandles": 1
+                },
+                {
+                    "name": "Michał Bronowski",
+                    "birthDate": "2024-02-16",
+                    "deathDate": "2024-02-21",
+                    "placeOfOrigin": "Ustrzyki Dolne",
+                    "placeOfFuneral": "Sanok",
+                    "gender": "Mężczyzna",
+                    "title": null,
+                    "funeralDetails": "Msza odbędzie się dnia 27.02.2024r., o godzinie 13:00 w kościele w Sanoku.Po uroczystości kondukt żałobny odprowadzi zmarłego na miejsce wiecznego spoczynku.",
+                    "additionalInfo": "Rodzina zaprasza najbliższych na stypę do lokalu.",
+                    "activeCandles": 0
+                }
+            ]
+        </pre>
+    </div>
+    <br/>
+</div>
+<div>
+    <h3>Wyszukiwanie po imieniu i nazwisku, miejscu pogrzebu lub po obu parametrach jednocześnie</h3>
+    <br/>
+    <code>http://localhost:8080/api/v1/necrology?name={name}&place={place}</code>
+    <br/>
+    <br/>
+    <p>{<b>name</b>} : fragment lub całość imienia i nazwiska (niewymagane)</p>
+    <p>{<b>place</b>} :fragment lub całość nazwy miejscowości uroczystości pogrzebowych (niewymagane)</p>
+    <br/>
+    <p>W przypadku gdy żaden z tych parametrów nie zostanie podany, zostanie wygenerowana lista WSZYSTKICH dodanych
+        nekrologów.</p>
+    <br/>
+    <p><b>Przkładowe zapytanie GET:</b></p>
+    <p>
+        http://localhost:8080/api/v1/necrology?name=kow&place=warsz
+    </p>
+    <br/>
+    <p><b>Przykładowa odpowiedź:</b></p>
+    <pre>
+        [
+            {
+                "name": "Jan Kowalski",
+                "birthDate": "1948-07-20",
+                "deathDate": "2024-01-01",
+                "placeOfOrigin": "Stargard",
+                "placeOfFuneral": "Warszawa",
+                "gender": "Mężczyzna",
+                "title": "Artysta, malarz, filantrop",
+                "funeralDetails": "Pogrzeb odbędzie się dnia 18.01.2024r., o godzinie 12:15 w Warszawie, w Kaplicy na Cmentarzu Bródnowskim. Po uroczystosci pogrzebowej nastąpi odproadzenie urny z prochami zmarłego.",
+                "additionalInfo": "Rodzina prosi o nieskładanie kondolencji na cmentarzu.",
+                "activeCandles": 3
+            }
+        ]
+    </pre>
+    <br/>
+</div>
+<div>
+    <h3>Wyszukiwanie ostatnich X dodanych nekrologów</h3>
+    <br/>
+    <code>http://localhost:8080/api/v1/necrology?last={last}</code>
+    <br/>
+    <br/>
+    <p>{<b>last</b>} : wybrany limit ostatnio dodanych nekrologów (niewymagane)</p>
+    <br/>
+    <p>W przypadku gdy parametr nie zostanie podany, zostanie wygenerowana lista WSZYSTKICH dodanych nekrologów.</p>
+    <br/>
+    <p><b>Przkładowe zapytanie GET:</b></p>
+    <p>
+        http://localhost:8080/api/v1/necrology?last=3
+    </p>
+    <br/>
+    <p><b>Przykładowa odpowiedź:</b></p>
+    <pre>
+        [
+            {
+                "name": "Michał Bronowski",
+                "birthDate": "2024-02-16",
+                "deathDate": "2024-02-21",
+                "placeOfOrigin": "Ustrzyki Dolne",
+                "placeOfFuneral": "Sanok",
+                "gender": "Mężczyzna",
+                "title": null,
+                "funeralDetails": "Msza odbędzie się dnia 27.02.2024r., o godzinie 13:00 w kościele w Sanoku.Po uroczystości kondukt żałobny odprowadzi zmarłego na miejsce wiecznego spoczynku.",
+                "additionalInfo": "Rodzina zaprasza najbliższych na stypę do lokalu.",
+                "activeCandles": 0
+            },
+            {
+                "name": "Anastazja Nowakowska-Długowska",
+                "birthDate": "1927-09-11",
+                "deathDate": "2020-06-28",
+                "placeOfOrigin": "Olsztyn",
+                "placeOfFuneral": "Olsztyn",
+                "gender": "Kobieta",
+                "title": "Lekarz ortopeda, przewodnicząca Rady Lekarskiej",
+                "funeralDetails": "Pogrzeb odbędzie się dnia 02.07.2020r., o godzinie 10:15 w Olsztynie.Przed pogrzebem możliwe prywatne pożegnanie ze zmarłą w kaplicy cmentarnej.",
+                "additionalInfo": "Zamiast zniczy prosimy o wpłatę na dowolny cel charytatywny.",
+                "activeCandles": 1
+            },
+            {
+                "name": "Jan Kowalski",
+                "birthDate": "1948-07-20",
+                "deathDate": "2024-01-01",
+                "placeOfOrigin": "Stargard",
+                "placeOfFuneral": "Warszawa",
+                "gender": "Mężczyzna",
+                "title": "Artysta, malarz, filantrop",
+                "funeralDetails": "Pogrzeb odbędzie się dnia 18.01.2024r., o godzinie 12:15 w Warszawie.Po uroczystosci pogrzebowej nastąpi odprowadzenie urny z prochami zmarłego.",
+                "additionalInfo": "Rodzina prosi o nieskładanie kondolencji na cmentarzu.",
+                "activeCandles": 3
+            }
+        ]
+    </pre>
+    <br/>
+</div>
+<div>
+    <h3>Wyszukiwanie konkretnego nekrologu</h3>
+    <br/>
+    <code>http://localhost:8080/api/v1/necrology/{id}</code>
+    <br/>
+    <br/>
+    <p>{<b>id</b>} : wybrany numer nekrologu</p>
+    <br/>
+    <p><b>Przkładowe zapytanie GET:</b></p>
+    <p>
+        http://localhost:8080/api/v1/necrology/1
+    </p>
+    <br/>
+    <p><b>Przykładowa odpowiedź:</b></p>
+    <pre>
+         {
+            "name": "Jan Kowalski",
+            "birthDate": "1948-07-20",
+            "deathDate": "2024-01-01",
+            "placeOfOrigin": "Stargard",
+            "placeOfFuneral": "Warszawa",
+            "gender": "Mężczyzna",
+            "title": "Artysta, malarz, filantrop",
+            "funeralDetails": "Pogrzeb odbędzie się dnia 18.01.2024r., o godzinie 12:15 w Warszawie, w Kaplicy na Cmentarzu Bródnowskim. Po uroczystosci pogrzebowej nastąpi odproadzenie urny z prochami zmarłego.",
+            "additionalInfo": "Rodzina prosi o nieskładanie kondolencji na cmentarzu.",
+            "activeCandles": 3
+        }
+    </pre>
+    <br/>
+</div>
+<div>
+    <h3>Liczba wszystkich nekrologów w bazie</h3>
+    <br/>
+    <code>http://localhost:8080/api/v1/necrology/count</code>
+    <br/>
+    <br/>
+    <p><b>Przkładowe zapytanie GET:</b></p>
+    <p>
+        http://localhost:8080/api/v1/necrology/count
+    </p>
+    <br/>
+    <p><b>Przykładowa odpowiedź:</b></p>
+    <pre>
+        17
+    </pre>
+    <br/>
+</div>

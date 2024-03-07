@@ -3,8 +3,19 @@ package pl.mt.mortalis.necrology;
 import jakarta.mail.MessagingException;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-import pl.mt.mortalis.ActivationManager;
+import pl.mt.mortalis.Gender;
+import pl.mt.mortalis.admin.dto.NecrologyModerationDto;
+import pl.mt.mortalis.admin.dto.NecrologyModerationEditDto;
+import pl.mt.mortalis.admin.dto.mapper.NecrologyModerationDtoMapper;
+import pl.mt.mortalis.admin.dto.mapper.NecrologyModerationEditDtoMapper;
+import pl.mt.mortalis.kinship.Kinship;
+import pl.mt.mortalis.kinship.KinshipService;
+import pl.mt.mortalis.mail.ActivationManager;
 import pl.mt.mortalis.mail.MailService;
 import pl.mt.mortalis.mail.Message;
 import pl.mt.mortalis.necrology.dto.*;
@@ -12,6 +23,7 @@ import pl.mt.mortalis.necrology.dto.mapper.NecrologyDisplayDtoMapper;
 import pl.mt.mortalis.necrology.dto.mapper.NecrologyFormDtoMapper;
 import pl.mt.mortalis.necrology.dto.mapper.NecrologyPreviewDtoMapper;
 
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
@@ -20,27 +32,40 @@ import java.util.stream.Collectors;
 @Service
 public class NecrologyService {
     private static final int LAST_ADDED_AMOUNT = 10;
+    private static final int PAGE_SIZE = 8;
+
     private final NecrologyRepository necrologyRepository;
     private final NecrologyFormDtoMapper necrologyFormDtoMapper;
     private final NecrologyDisplayDtoMapper necrologyDisplayDtoMapper;
     private final NecrologyPreviewDtoMapper necrologyPreviewDtoMapper;
+    private final NecrologyModerationDtoMapper necrologyModerationDtoMapper;
+    private final NecrologyModerationEditDtoMapper necrologyModerationEditDtoMapper;
     private final MailService mailService;
+    private final KinshipService kinshipService;
     private final ActivationManager activationManager;
 
     public NecrologyService(NecrologyRepository necrologyRepository,
                             NecrologyFormDtoMapper necrologyFormDtoMapper,
                             NecrologyDisplayDtoMapper necrologyDisplayDtoMapper,
-                            NecrologyPreviewDtoMapper necrologyPreviewDtoMapper, MailService mailService, ActivationManager activationManager) {
+                            NecrologyPreviewDtoMapper necrologyPreviewDtoMapper,
+                            NecrologyModerationDtoMapper necrologyModerationDtoMapper,
+                            NecrologyModerationEditDtoMapper necrologyModerationEditDtoMapper,
+                            MailService mailService,
+                            KinshipService kinshipService,
+                            ActivationManager activationManager) {
         this.necrologyRepository = necrologyRepository;
         this.necrologyFormDtoMapper = necrologyFormDtoMapper;
         this.necrologyDisplayDtoMapper = necrologyDisplayDtoMapper;
         this.necrologyPreviewDtoMapper = necrologyPreviewDtoMapper;
+        this.necrologyModerationDtoMapper = necrologyModerationDtoMapper;
+        this.necrologyModerationEditDtoMapper = necrologyModerationEditDtoMapper;
         this.mailService = mailService;
+        this.kinshipService = kinshipService;
         this.activationManager = activationManager;
     }
 
     @Transactional
-    public void activate(NecrologyFormDto necrologyFormDto) {
+    public void activate(NecrologyFormDto necrologyFormDto) throws IOException {
         Necrology necrology = save(necrologyFormDto);
         String necrologyIdentifier = createNecrologyIdentifier(necrology);
         necrology.setNecrologyIdentifier(necrologyIdentifier);
@@ -65,7 +90,7 @@ public class NecrologyService {
     }
 
     @Transactional
-    public Necrology save(NecrologyFormDto necrologyFormDto) {
+    public Necrology save(NecrologyFormDto necrologyFormDto) throws IOException {
         return necrologyRepository.save(necrologyFormDtoMapper.map(necrologyFormDto));
     }
 
@@ -90,15 +115,19 @@ public class NecrologyService {
         return necrologyDisplayDtoMapper.maptoDisplayDto(necrology);
     }
 
+    public Page<NecrologyPreviewDto> findAllActivated(int pageNo) {
+        Page<Necrology> necrologies = findAllPaged(pageNo);
+        return necrologies
+                .map(necrologyPreviewDtoMapper::maptoPreviewDto);
+    }
+
     public List<Necrology> findAllByActivatedIsTrue() {
         return necrologyRepository.findAllByActivatedIsTrue();
     }
 
-    public List<NecrologyPreviewDto> findAllActivated() {
-        List<Necrology> necrologies = findAllByActivatedIsTrue();
-        return necrologies.stream()
-                .map(necrologyPreviewDtoMapper::maptoPreviewDto)
-                .collect(Collectors.toList());
+    private Page<Necrology> findAllPaged(int pageNo) {
+        Pageable page = PageRequest.of(pageNo, PAGE_SIZE, Sort.by("id").descending());
+        return necrologyRepository.findAllBy(page);
     }
 
     @Transactional
@@ -128,7 +157,7 @@ public class NecrologyService {
     }
 
     public List<NecrologyPreviewDto> search(String word) {
-        List<Necrology> necrologies = necrologyRepository.findByWord(word);
+        List<Necrology> necrologies = necrologyRepository.findByWord(word.toLowerCase());
         return necrologies.stream()
                 .map(necrologyPreviewDtoMapper::maptoPreviewDto)
                 .collect(Collectors.toList());
@@ -157,5 +186,49 @@ public class NecrologyService {
 
     public List<Necrology> findAllByActivatedIsTrueLimitedByLast(Integer last) {
         return necrologyRepository.findAllByActivatedIsTrueOrderByIdDescLimited(last);
+    }
+
+    public List<NecrologyModerationDto> findNecrologiesToModeration() {
+        return necrologyRepository.findAllByOrderByIdDesc()
+                .stream()
+                .map(necrologyModerationDtoMapper::mapToModerationDto)
+                .collect(Collectors.toList());
+    }
+
+    public void deleteById(Long id) {
+        necrologyRepository.deleteById(id);
+    }
+
+    public NecrologyModerationEditDto getToUpdate(Long id) {
+        Optional<Necrology> necrologyOptional = findById(id);
+        return necrologyOptional
+                .map(necrologyModerationEditDtoMapper::mapToEditDto)
+                .orElseThrow(EntityNotFoundException::new);
+    }
+
+    @Transactional
+    public void update(Long id, NecrologyModerationEditDto necrologyModerationEditDto) {
+        Optional<Necrology> necrologyOptional = necrologyRepository.findById(id);
+        necrologyOptional.ifPresent(necrology -> {
+            try {
+                necrology.setName(necrologyModerationEditDto.getName());
+                necrology.setBirthDate(necrologyModerationEditDto.getBirthDate());
+                necrology.setDeathDate(necrologyModerationEditDto.getDeathDate());
+                necrology.setPlaceOfOrigin(necrologyModerationEditDto.getPlaceOfOrigin());
+                necrology.setPlaceOfFuneral(necrologyModerationEditDto.getPlaceOfFuneral());
+                Optional<Gender> genderByName = Gender.findGenderByName(necrologyModerationEditDto.getGender());
+                genderByName.ifPresent(necrology::setGender);
+                necrology.setPictureBytes(necrologyModerationEditDto.getPictureFile().getBytes());
+                necrology.setTitle(necrologyModerationEditDto.getTitle());
+                List<Kinship> kinship = kinshipService.findAllByNameIn(necrologyModerationEditDto.getKinship());
+                necrology.setKinship(kinship);
+                necrology.setAddCrossAndLate(necrologyModerationEditDto.getAddCrossAndLate());
+                necrology.setRemovingDate(necrologyModerationEditDto.getRemoveDate());
+                necrology.setFuneralDetails(necrologyModerationEditDto.getFuneralDetails());
+                necrology.setAdditionalInfo(necrologyModerationEditDto.getAdditionalInfo());
+            } catch (IOException e) {
+                throw new RuntimeException("File could not be saved");
+            }
+        });
     }
 }

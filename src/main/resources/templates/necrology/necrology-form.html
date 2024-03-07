@@ -18,8 +18,8 @@
                         <p>
                             Z ogromnym smutkiem zawiadamiamy, że dnia <span class="form-preview-death-date"></span> roku,
                             w wieku <span class="form-preview-age"></span>
-                            <span id="form-preview-female" style="display: none;">odeszła Najdroższa</span>
-                            <span id="form-preview-male" style="display: none;">odszedł Najdroższy</span>
+                            <span id="form-preview-female" style="display: none;"> odeszła Najdroższa</span>
+                            <span id="form-preview-male" style="display: none;"> odszedł Najdroższy</span>
                         </p>
                     </div>
                     <div class="single-necrology-kinship">
@@ -33,8 +33,14 @@
                                 P.
                             </p>
                         </div>
-                        <div class="single-necrology-name">
-                            <p class="form-preview-name"></p>
+                        <div class="single-necrology-person-info">
+                            <div class="single-necrology-person-photo">
+                                <i id="form-preview-photo-i" class="fa-solid fa-ribbon fa-4x"></i>
+                                <img id="form-preview-photo-img" src="#" alt="Zdjęcie zmarłej osoby" style="display: none"/>
+                            </div>
+                            <div class="single-necrology-name">
+                                <p class="form-preview-name"></p>
+                            </div>
                         </div>
                     </div>
                     <div class="single-necrology-title">
@@ -66,7 +72,7 @@
                 jedynie w celu weryfikacji.</p>
         </div>
         <div>
-            <form th:action="@{/nekrolog/dodaj}" action="/nekrolog/dodaj" method="post" th:object="${necrology}">
+            <form th:action="@{/nekrolog/dodaj}" action="/nekrolog/dodaj" method="post" th:object="${necrology}" enctype="multipart/form-data">
                 <div class="mb-3">
                     <label class="form-label">
                         <span class="asterisk">*</span>Imię i nazwisko osoby zmarłej
@@ -120,14 +126,12 @@
                     </div>
                     <p th:errors="*{gender}" class="error">Błędna opcja płci</p>
                 </div>
-                <!--
                 <div class="mb-3">
                     <label class="form-label">
                         Zdjęcie zmarłej osoby
-                        <input type="file" class="form-control" th:field="*{file}" accept="image/*">
+                        <input type="file" class="form-control" id="pictureFile" th:field="*{pictureFile}" accept=".png, .jpeg, .jpg">
                     </label>
                 </div>
-                -->
                 <div class="mb-3">
                     <label class="form-label">
                         Tytuły naukowe, zawód, zajęcie
@@ -197,6 +201,5 @@
         </div>
     </div>
 </main>
-
 </body>
 </html>

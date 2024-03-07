@@ -9,7 +9,7 @@ public interface CondolencesRepository extends JpaRepository<Condolences, Long> 
 
     Optional<Condolences> findByCode(String code);
 
-    List<Condolences> findAllByActivatedTrueOrderByIdDesc();
+    List<Condolences> findAllByOrderByIdDesc();
 
     void deleteAllByActivatedIsFalse();
 }

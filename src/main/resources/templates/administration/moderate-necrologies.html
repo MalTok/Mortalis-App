@@ -2,32 +2,38 @@
 <html lang="pl" xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout}">
 <head>
-    <title>Moderacja kondolencji</title>
+    <title>Moderacja nekrologów</title>
 </head>
 <body>
 <main layout:fragment="content">
     <div class="main-page-container">
         <div class="section-title">
-            <p>Zapisane kondolencje</p>
+            <p>Zapisane nekrologi</p>
             <hr>
         </div>
         <table class="table table-striped">
             <thead>
             <tr>
                 <th>Id</th>
-                <th>Od</th>
-                <th>Treść</th>
+                <th>Urodzony w</th>
+                <th>Pogrzeb w</th>
+                <th>Tytuł</th>
+                <th>Szczegóły pogrzebu</th>
+                <th>Dodatkowe informacje</th>
                 <th>Usuń</th>
                 <th>Edytuj</th>
             </tr>
             </thead>
             <tbody>
-            <tr th:each="condolence : ${condolences}">
-                <td th:text="${condolence.id}">1</td>
-                <td th:text="${condolence.fromName}">Anna</td>
-                <td th:text="${condolence.message}">Wyrazy współczucia</td>
+            <tr th:each="necrology : ${necrologies}">
+                <td th:text="${necrology.id}">1</td>
+                <td th:text="${necrology.placeOfOrigin}">Szczecin</td>
+                <td th:text="${necrology.placeOfFuneral}">Warszawa</td>
+                <td th:text="${necrology.title}">Lekarz, kompozytor</td>
+                <td th:text="${necrology.funeralDetails}">Pogrzeb odbędzie się w kaplicy cmentarne.</td>
+                <td th:text="${necrology.additionalInfo}">Prosimy nie przynosić zniczy.</td>
                 <td>
-                    <form th:action="@{|/administracja/moderacja/kondolencje/${condolence.id}/usun|}"
+                    <form th:action="@{|/administracja/moderacja/nekrologi/${necrology.id}/usun|}"
                           method="post">
                         <button>
                             <i class="fa-solid fa-trash-can"></i>
@@ -35,7 +41,7 @@
                     </form>
                 </td>
                 <td>
-                    <form th:action="@{|/administracja/moderacja/kondolencje/${condolence.id}/edytuj|}"
+                    <form th:action="@{|/administracja/moderacja/nekrologi/${necrology.id}/edytuj|}"
                           method="post">
                         <button>
                             <i class="fa-solid fa-file-pen"></i>

@@ -6,15 +6,15 @@
 </head>
 <body>
 <main layout:fragment="content">
+    <div class="index-search-container">
+        <form class="index-search-form" th:action="@{/szukaj}" action="/szukaj" method="get">
+            <label class="form-label">
+                <input name="word" class="form-control" type="search" placeholder="Imię, nazwisko, miejscowość">
+            </label>
+            <button class="buttons"><i class="fa-solid fa-magnifying-glass"></i></button>
+        </form>
+    </div>
     <div class="main-page-container">
-        <div class="index-search-container">
-            <form class="index-search-form" th:action="@{/szukaj}" action="/szukaj" method="get">
-                <label class="form-label">
-                    <input name="word" class="form-control" type="search" placeholder="Imię, nazwisko, miejscowość">
-                </label>
-                <button class="buttons"><i class="fa-solid fa-magnifying-glass"></i></button>
-            </form>
-        </div>
         <div class="index-app-info-container">
             <div class="index-app-info-text">
                 <div>
@@ -31,13 +31,13 @@
                         dodawania nekrologów.
                     </p>
                 </div>
-                <div class="index-add-necrology">
-                    <a th:href="@{/nekrolog/dodaj}" href="/nekrolog/dodaj">
-                        <div>
-                            <p>DODAJ NEKROLOG</p>
-                        </div>
-                    </a>
-                </div>
+            </div>
+            <div class="index-add-necrology">
+                <a th:href="@{/nekrolog/dodaj}" href="/nekrolog/dodaj">
+                    <div>
+                        <p>DODAJ NEKROLOG</p>
+                    </div>
+                </a>
             </div>
             <img th:src="@{/pics/widok-z-przodu-bialej-swiecy-w-ciemnosci.jpg}"
                  src="/pics/widok-z-przodu-bialej-swiecy-w-ciemnosci.jpg"
