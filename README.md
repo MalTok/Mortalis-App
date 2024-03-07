@@ -20,8 +20,8 @@
 
 <details>
 <summary>Click here to see general information about <b>Mortalis</b>.</summary>
-Mortalis is designed strictly for polish users, so it has visual features used commonly in polish obituaries.
-The app lets you add necrologies of your late realtives, light them multiple virtual candles in memoriam, write condolences, search through other necrologies. It includes API, admin / moderator management of content. It's the place where you can mourn your close ones, leave few words of memories you shared with the late person etc.
+<b>Mortalis</b> is designed strictly for polish users, so it has visual features used commonly in polish obituaries.
+The app lets you add necrologies of your late realtives, light them multiple virtual candles in memoriam, write condolences, search through other necrologies. It includes basic API, admin / moderator management of content. It's the place where you can mourn your close ones, leave few words of memories you shared with the late person etc.
 </details>
 
 ## Technologies Used
@@ -32,6 +32,13 @@ The app lets you add necrologies of your late realtives, light them multiple vir
       <img src="https://img.shields.io/badge/Java-%23F80000?style=for-the-badge&logo=oracle" alt="red button oracle java"/>
     </a> - version 17
   </div>
+ 
+  <div>
+    <div>
+      <a href="https://maven.apache.org/">
+        <img src=" https://img.shields.io/badge/Maven-%23C71A36?style=for-the-badge&logo=apachemaven&logoColor=black"/>
+      </a>
+    </div>
   <div>
     <div>
       <a href="https://www.thymeleaf.org/">
@@ -83,24 +90,27 @@ The app lets you add necrologies of your late realtives, light them multiple vir
   </div>
   <div>
     <a href="https://jquery.com">
-      <img src="https://img.shields.io/badge/jQuery-0769AD?style=for-the-badge&logo=jquery&logoColor=white"/>
+      <img src="https://img.shields.io/badge/jQuery-0769AD?style=for-the-badge&logo=jquery&logoColor=black"/>
     </a>
   </div>
   <div>
     <img src="https://img.shields.io/badge/HTML-%23E34F26?style=for-the-badge&logo=html5&logoColor=black"/>
   </div>
   <div>
-    <img src="https://img.shields.io/badge/CSS-%231572B6?style=for-the-badge&logo=css3&logoColor=black"/>
+    <img src="https://img.shields.io/badge/CSS-%231572B6?style=for-the-badge&logo=css3&logoColor=black">
   </div>
   <div>
     <a href="https://getbootstrap.com">
-      <img src="https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white"/>
+      <img src="https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=wblack"/>
     </a> - version 5.3.2
   </div>
   <div>
     <a href="https://fontawesome.com/">
       <img src="https://img.shields.io/badge/FontAwesome-%23528DD7?style=for-the-badge&logo=fontawesome&logoColor=black"/>
     </a>
+  </div>
+  <div>
+  <p>unit, mockito, assertj</p>
   </div>
 </div>
 
@@ -112,8 +122,8 @@ Ready features:
 <ul>
   <li>form with validated required fields</li>
   <li>personal data of late person, funeral details, picking kinship from database list and other minor features</li>
-  <li>ability to check for automaticaly remove necrology after 14 days</li>
-  <li>dynamic preview of necrology</li>
+  <li>ability to check for automaticaly necrology removing after 14 days</li>
+  <li>dynamic preview of necrology while filling form</li>
   <li>verification with activation code via e-mail message</li>
 </ul>
 
@@ -126,16 +136,18 @@ Ready features:
 
 - <b>Condolences adding:</b>
 <ul>
-  <li>form with validated required fields</li>
+  <li>form with validated required fields (bad words filter)</li>
   <li>ability to add text and signature of person adding</li>
   <li>verification with activation code via e-mail message</li>
 </ul>
 
+- <b>all added activated necrologies list with pagination</b>
+
 - <b>showing only previously activated necrologies, candles and condolences in entire service</b>
 
-- <b>showing last 10 added necrologies on main page as a basic information preview</b>
+- <b>showing last 10 added necrologies on main page as a preview of basic necrology information</b>
 
-- <b>searching through necrology database</b>
+- <b>searching through necrology database (by name or place of living / funeral)</b>
 
 - <b>admin / moderator account for simple moderation of added necrologies and condolences (currently available only removing option)</b>
 
@@ -145,9 +157,9 @@ Ready features:
   <li>not activated by user (necrologies, candles and condolences)</li>
 </ul>
 
-- <b>simple API for potential local services (ability to get data such as total necrologies number in database, list of necrologies with particular name or place of funeral, single necrology by known Id numer, etc., in JSON format)</b>
+- <b>simple API for potential local services (ability to get data such as total necrologies number in database, list of necrologies with particular name or place of funeral, single necrology by known Id number, etc.; output in JSON format)</b>
 
-- <b>added instruction, FAQ, website regulations</b>
+- <b>included instruction, FAQ, website regulations</b>
 
 ## Screenshots
 
@@ -182,6 +194,7 @@ Room for improvement:
 To do:
 
 <ul>
+  <li>"Request for a change" - option for users which allows to edit necrologies</li>
   <li>Adding payment option</li>
   <li>When payment will be added - add ability to sign up for normal users, free limit of necrologis per month per user - necrologies above limit will be charged (for example for funeral companies)</li>
 </ul>
