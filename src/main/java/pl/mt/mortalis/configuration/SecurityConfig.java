@@ -25,7 +25,7 @@ public class SecurityConfig {
                 .requestMatchers("/").permitAll()
                 .requestMatchers("/api/**").permitAll()
                 .requestMatchers("/szukaj").permitAll()
-                .requestMatchers("/wszystkie").permitAll()
+                .requestMatchers("/wszystkie/**").permitAll()
                 .requestMatchers("/strona/**").permitAll()
                 .requestMatchers("/nekrolog/**").permitAll()
                 .requestMatchers("/kondolencje/**").permitAll()

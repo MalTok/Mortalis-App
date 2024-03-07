@@ -1,6 +1,7 @@
-package pl.mt.mortalis;
+package pl.mt.mortalis.mail;
 
 import org.springframework.stereotype.Service;
+import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.util.UUID;
@@ -12,10 +13,14 @@ public class ActivationManager {
     }
 
     private String createActivationMessageText(String code, String uriString) {
-        return  "W celu weryfikacji kliknij lub skopiuj i wklej w przeglądarce ten link: " +
-                UriComponentsBuilder.fromUriString(uriString)
-                        .queryParam("code", code)
-                        .build();
+        UriComponents uriCode = UriComponentsBuilder.fromUriString(uriString)
+                .queryParam("code", code)
+                .build();
+        return  "<b>MORTALIS baza nekrologów</b><br/><br/>" +
+                "W celu weryfikacji <strong>kliknij lub skopiuj</strong> i wklej w przeglądarce ten link:<br/><br/>" +
+                "<a href=&quot; " + uriCode + "&quot>" +
+                uriCode +
+                "</a>";
     }
 
     public String createCandleActivationMessageText(String code) {

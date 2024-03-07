@@ -8,8 +8,8 @@
     <include file="0002-create_table_candle.xml" relativeToChangelogFile="true"/>
     <include file="0003-create_table_condolences.xml" relativeToChangelogFile="true"/>
     <include file="0004-create_tables_person__person_role.xml" relativeToChangelogFile="true"/>
-    <include file="0005-create_table_uploaded_file.xml" relativeToChangelogFile="true"/>
-    <include file="0006-create_table_page.xml" relativeToChangelogFile="true"/>
-    <include file="0007-insert_page_data.xml" relativeToChangelogFile="true"/>
+    <include file="0005-create_table_page.xml" relativeToChangelogFile="true"/>
+    <include file="0006-insert_page_data.xml" relativeToChangelogFile="true"/>
+    <include file="0007-load_necrology_data.xml" relativeToChangelogFile="true"/>
     <include file="testdata/testdata.sql" relativeToChangelogFile="true" context="dev"/>
 </databaseChangeLog>

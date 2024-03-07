@@ -16,7 +16,7 @@ public class KinshipService {
         return kinshipRepository.findAll();
     }
 
-    public List<Kinship> findAllByPlNameIn(List<String> kinshipList) {
-        return kinshipRepository.findAllByPlNameIn(kinshipList);
+    public List<Kinship> findAllByNameIn(List<String> kinshipList) {
+        return kinshipRepository.findAllByNameIn(kinshipList);
     }
 }

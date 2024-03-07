@@ -1,7 +1,6 @@
 package pl.mt.mortalis.necrology.dto;
 
 import lombok.Data;
-import pl.mt.mortalis.UploadedFile;
 import pl.mt.mortalis.condolences.dto.CondolencesDisplayDto;
 
 import java.time.LocalDate;
@@ -15,7 +14,7 @@ public class NecrologyDisplayDto {
     private String placeOfOrigin;
     private String placeOfFuneral;
     private String genderVerb;
-    private UploadedFile file;
+    private String pictureBase64;
     private String title;
     private String kinship;
     private Boolean addCrossAndLate;

@@ -1,5 +1,6 @@
 $(document).ready(function () {
-    let $deathDate = $("#deathDate");
+    const $birthDate = $("#birthDate");
+    const $deathDate = $("#deathDate");
 
     $deathDate.on('input', function () {
         const $deathInput = $(this);
@@ -12,16 +13,14 @@ $(document).ready(function () {
     });
 
     function countAge() {
-        let $birthDate = $("#birthDate");
-
         const $previewAge = $(".form-preview-age");
 
         const birthDateValue = $birthDate.val();
         const deathDateValue = $deathDate.val();
 
         if (birthDateValue !== "" && deathDateValue !== "") {
-            const birthDate = new Date(birthDateValue);
-            const deathDate = new Date(deathDateValue);
+            const birthDate = moment(birthDateValue).format('DD.MM.YYYY');
+            const deathDate = moment(deathDateValue).format('DD.MM.YYYY');
 
             const differenceInMillis = deathDate - birthDate;
             const differenceInDays = differenceInMillis / (1000 * 60 * 60 * 24);
@@ -78,6 +77,14 @@ $(document).ready(function () {
     $("#name").on('input', function () {
         const $nameInput = $(this);
         $(".form-preview-name").text($nameInput.val());
+    });
+
+    $("#pictureFile").on('change', function () {
+
+        $("#form-preview-photo-i").hide();
+        const $photoPreview = $("#form-preview-photo-img");
+        $photoPreview.show();
+        $photoPreview.attr('src', window.URL.createObjectURL(this.files[0]));
     });
 
     $("#title").on('input', function () {

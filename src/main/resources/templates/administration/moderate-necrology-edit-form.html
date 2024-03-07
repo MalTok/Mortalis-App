@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout}">
+<head>
+    <title>Edycja nekrologu</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+    <script th:src="@{/scripts/form-validation.js}" src="/scripts/form-validation.js"></script>
+</head>
+<body>
+<main layout:fragment="content">
+    <div class="main-page-container">
+        <div>
+            <div class="section-title">
+                <p>Edycja nekrologu</p>
+                <hr>
+            </div>
+        </div>
+        <form th:action="@{|/administracja/moderacja/nekrologi/${necrologyEdit.id}/aktualizuj|}" method="post"
+              th:object="${necrologyEdit}" enctype="multipart/form-data">
+            <div class="mb-3">
+                <label class="form-label">
+                    Id
+                    <input type="text" class="form-control" id="id" th:field="*{id}" disabled>
+                </label>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">
+                    <span class="asterisk">*</span>Imię i nazwisko osoby zmarłej
+                    <input type="text" class="form-control" id="name" th:field="*{name}" placeholder="Jan Kowalski">
+                </label>
+                <p th:errors="*{name}" class="error">Błędne imię lub nazwisko</p>
+                <p id="nameInfo">Maksymalna długość wynosi 77 znaków</p>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">
+                    <span class="asterisk">*</span>Data urodzenia
+                    <input type="date" class="form-control" id="birthDate" th:field="*{birthDate}">
+                </label>
+                <p th:errors="*{birthDate}" class="error">Błędna data urodzenia</p>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">
+                    <span class="asterisk">*</span>Data śmierci
+                    <input type="date" class="form-control" id="deathDate" th:field="*{deathDate}">
+                </label>
+                <p th:errors="*{deathDate}" class="error">Błędna data śmierci</p>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">
+                    Miejscowość urodzenia
+                    <input type="text" class="form-control" id="placeOfOrigin" th:field="*{placeOfOrigin}"
+                           placeholder="Szczecin">
+                </label>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">
+                    Miejscowość uroczystości pogrzebowych
+                    <input type="text" class="form-control" id="placeOfFuneral" th:field="*{placeOfFuneral}"
+                           placeholder="Warszawa">
+                </label>
+            </div>
+            <div class="mb-3">
+                <p>
+                    <span class="asterisk">*</span>
+                    Płeć osoby zmarłej
+                </p>
+                <div class="gender-container">
+                    <div>
+                        <input type="radio" class="form-check-control" th:field="*{gender}" value="FEMALE"
+                               id="female" onclick="change()">
+                        <label class="form-label" for="female">Kobieta</label>
+                    </div>
+                    <div>
+                        <input type="radio" class="form-check-control" th:field="*{gender}" value="MALE" id="male"
+                               onclick="change()">
+                        <label class="form-label" for="male">Mężczyzna</label>
+                    </div>
+                </div>
+                <p th:errors="*{gender}" class="error">Błędna opcja płci</p>
+            </div>
+            <div class="mb-3">
+                <p>Aktualne zdjęcie</p>
+                <div>
+                    <div class="single-necrology-person-photo" th:unless="*{pictureBase64 == null or pictureBase64.isEmpty()}">
+                        <img th:src="'data:image/jpeg;base64,' + *{pictureBase64}" alt="Zdjęcie zmarłej osoby"/>
+                    </div>
+                    <div class="single-necrology-person-photo" th:if="*{pictureBase64 == null or pictureBase64.isEmpty()}">
+                        <i class="fa-solid fa-ribbon fa-5x"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">
+                    Zdjęcie zmarłej osoby
+                    <input type="file" class="form-control" id="pictureFile" th:field="*{pictureFile}" accept=".png, .jpeg, .jpg">
+                </label>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">
+                    Tytuły naukowe, zawód, zajęcie
+                    <input type="text" class="form-control" id="title" th:field="*{title}"
+                           placeholder="Kompoztor, filantrop, lekarz">
+                </label>
+                <p id="titleInfo">Maksymalna długość wynosi 115 znaków</p>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">
+                    Pokrewieństwo (zaznacz wiele z CTRL)
+                    <select class="form-select mb-3" id="kinship" multiple="multiple" th:field="*{kinship}">
+                        <option th:each="kin: ${kinshipList}" th:value="${kin.name}"
+                                th:text="${kin.plName}">
+                            Kategoria
+                        </option>
+                    </select>
+                </label>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">
+                    Informacje o pogrzebie
+                    <textarea class="form-control" id="funeralDetails" th:field="*{funeralDetails}"
+                              placeholder="Zacznij pisać..."></textarea>
+                </label>
+                <p id="funeralDetailsInfo">Maksymalna długość wynosi 382 znaków</p>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">
+                    Dodatkowe informacje
+                    <textarea class="form-control" id="additionalInfo" th:field="*{additionalInfo}"
+                              placeholder="Zacznij pisać..."></textarea>
+                </label>
+                <p id="additionalInfoInfo">Maksymalna długość wynosi 200 znaków</p>
+            </div>
+            <div class="mb-3">
+                <label class="form-check-label">
+                    Krzyż i dopisek Ś.P.
+                    <input type="checkbox" class="form-check-input" id="addCrossAndLate" th:field="*{addCrossAndLate}">
+                </label>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">
+                    Data automatycznego usunięcia nekrologu
+                    <input type="datetime-local" class="form-control" id="removeDate" th:field="*{removeDate}">
+                </label>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">
+                    E-mail osoby wysyłającej formularz
+                    <input type="text" class="form-control" th:field="*{fromEmail}" disabled>
+                </label>
+            </div>
+            <div class="asterisk-container">
+                <span class="asterisk">*</span>
+                <p class="asterisk-text">pola oboiązkowe</p>
+            </div>
+            <button class="buttons" id="necrologyFormButton" type="submit">AKTUALIZUJ</button>
+        </form>
+    </div>
+</main>
+</body>
+</html>

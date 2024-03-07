@@ -40,10 +40,11 @@
             </label>
             <p th:errors="*{fromEmail}" class="error">Błędny e-mail</p>
             <label class="form-label">
-                Treść kondolencji lub wspomnienie
+                <span class="asterisk">*</span>Treść kondolencji lub wspomnienie
                 <textarea class="form-control" placeholder="Wyrazy najgłębszego współczucia..."
                           th:field="*{message}"></textarea>
             </label>
+            <p th:errors="*{message}" class="error">Błędny text</p>
             <button class="buttons">ZOSTAW KONDOLENCJE</button>
             <div class="asterisk-container">
                 <span class="asterisk">*</span>

@@ -8,6 +8,7 @@ import pl.mt.mortalis.necrology.Necrology;
 import pl.mt.mortalis.necrology.dto.NecrologyDisplayDto;
 
 import java.time.Period;
+import java.util.Base64;
 import java.util.InputMismatchException;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -28,7 +29,9 @@ public class NecrologyDisplayDtoMapper {
         necrologyDisplayDto.setPlaceOfOrigin(necrology.getPlaceOfOrigin());
         necrologyDisplayDto.setPlaceOfFuneral(necrology.getPlaceOfFuneral());
         necrologyDisplayDto.setGenderVerb(getGenderVerb(necrology));
-//        necrologyDisplayDto.setFile(necrology.getFile());
+        if (necrology.getPictureBytes() != null) {
+            necrologyDisplayDto.setPictureBase64(Base64.getEncoder().encodeToString(necrology.getPictureBytes()));
+        }
         necrologyDisplayDto.setTitle(necrology.getTitle());
         necrologyDisplayDto.setKinship(getKinshipString(necrology));
         necrologyDisplayDto.setAddCrossAndLate(necrology.getAddCrossAndLate());
@@ -69,17 +72,25 @@ public class NecrologyDisplayDtoMapper {
         int years = between.getYears();
         int months = between.getMonths();
         int days = between.getDays();
+
         if (years > 1) {
             return years + " lat";
         } else if (years == 1) {
-            return years + " roku";
+            return "1 roku";
         } else if (years == 0 && months > 1) {
             return months + " miesięcy";
-        } else if (years == 0 && months == 0 && days >= 7) {
+        } else if (years == 0 && months == 1) {
+            return "1 miesiąca";
+        } else if (years == 0 && months == 0 && days > 7) {
             return days / 7 + " tygodni";
+        } else if (years == 0 && months == 0 && days == 7) {
+            return "1 tygodnia";
+        } else if (years == 0 && months == 0 && days == 1) {
+            return "1 dnia";
         } else if (years == 0 && months == 0) {
             return days + " dni";
+        } else {
+            throw new InputMismatchException("Błędnie wprowadzone daty");
         }
-        throw new InputMismatchException("Błędnie wprowadzone daty");
     }
 }
