@@ -118,7 +118,8 @@ The app lets you add necrologies of your late realtives, light them multiple vir
 
 Ready features:
 
-- <b>Necrology adding</b>:
+<b>Necrology adding</b>:
+
 <ul>
   <li>form with validated required fields</li>
   <li>personal data of late person, funeral details, picking kinship from database list and other minor features</li>
@@ -127,45 +128,53 @@ Ready features:
   <li>verification with activation code via e-mail message</li>
 </ul>
 
-- <b>Candle adding:</b>
+<b>Candle adding:</b>
+
 <ul>
   <li>form with validated required fields</li>
   <li>ability to light a candle for 30 days</li>
   <li>verification with activation code via e-mail message</li>
 </ul>
 
-- <b>Condolences adding:</b>
+<b>Condolences adding:</b>
+
 <ul>
   <li>form with validated required fields (bad words filter)</li>
   <li>ability to add text and signature of person adding</li>
   <li>verification with activation code via e-mail message</li>
 </ul>
 
-- <b>all added activated necrologies list with pagination</b>
+<b>all added activated necrologies list with pagination</b>
 
-- <b>showing only previously activated necrologies, candles and condolences in entire service</b>
+<b>showing only previously activated necrologies, candles and condolences in entire service</b>
 
-- <b>showing last 10 added necrologies on main page as a preview of basic necrology information</b>
+<b>showing last 10 added necrologies on main page as a preview of basic necrology information</b>
 
-- <b>searching through necrology database (by name or place of living / funeral)</b>
+<b>searching through necrology database (by name or place of living / funeral)</b>
 
-- <b>admin / moderator account for simple moderation of added necrologies and condolences (currently available only removing option)</b>
+<b>admin / moderator account for simple moderation of added necrologies and condolences (currently available only necrology or condolences removing and editing options)</b>
 
-- <b>automaticaly removed records from database when:</b>
+<b>automaticaly removed records from database when:</b>
+
 <ul>
   <li>expired (necrologies, candles)</li>
   <li>not activated by user (necrologies, candles and condolences)</li>
 </ul>
 
-- <b>simple API for potential local services (ability to get data such as total necrologies number in database, list of necrologies with particular name or place of funeral, single necrology by known Id number, etc.; output in JSON format)</b>
+<b>simple API for potential local services (ability to get data such as total necrologies number in database, list of necrologies with particular name or place of funeral, single necrology by known Id number, etc.; output in JSON format)</b>
 
-- <b>included instruction, FAQ, website regulations</b>
+<b>included instruction, FAQ, website regulations</b>
 
 ## Screenshots
 
 ![Example screenshot](./screenshots/screenshot1.png)
 
 ## Setup
+
+Admin panel access:
+
+- login: admin@byom.de
+- passord: hard
 
 What are the project requirements/dependencies? Where are they listed? A requirements.txt or a Pipfile.lock file perhaps? Where is it located?
 
@@ -188,7 +197,8 @@ Working on new, possible features.
 Room for improvement:
 
 <ul>
-  <li>Admin / moderator panel - add more options like ability to edit necrologies or condolences</li>
+  <li>Admin / moderator panel - add more options</li>
+  <li>Mobile phones display optimalization (especially necrology previews)</li>
 </ul>
 
 To do:
@@ -202,7 +212,7 @@ To do:
 ## Sources
 
 - This project was inspired by the look and functionality of webpage [zmarli.info](https://zmarli.info/), which commercial on YT I saw some time ago
-- All of the pictures used in this project come from [freepik.com](https://pl.freepik.com/) (authors: mdjaff, rawpixel.com)
+- All of the pictures used in this project come from [freepik.com](https://pl.freepik.com/) (authors: mdjaff, rawpixel.com, freepik)
 
 ## Contact
 
