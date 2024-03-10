@@ -65,14 +65,33 @@ public class NecrologyService {
     }
 
     @Transactional
-    public void activate(NecrologyFormDto necrologyFormDto) throws IOException {
-        Necrology necrology = save(necrologyFormDto);
-        String necrologyIdentifier = createNecrologyIdentifier(necrology);
-        necrology.setNecrologyIdentifier(necrologyIdentifier);
-        String code = activationManager.createCode();
-        necrology.setCode(code);
-        necrology.setActivated(false);
-        sendActivationEmail(necrologyFormDto, code);
+    public void startActivation(NecrologyFormDto necrologyFormDto) {
+        try {
+            Necrology necrology = save(necrologyFormDto);
+            String necrologyIdentifier = createNecrologyIdentifier(necrology);
+            necrology.setNecrologyIdentifier(necrologyIdentifier);
+            String code = activationManager.createCode();
+            necrology.setCode(code);
+            necrology.setActivated(false);
+            sendActivationEmail(necrologyFormDto, code);
+        } catch (IOException e) {
+            throw new RuntimeException("File could not be saved");
+        }
+    }
+
+    @Transactional
+    public Necrology save(NecrologyFormDto necrologyFormDto) throws IOException {
+        return necrologyRepository.save(necrologyFormDtoMapper
+                .mapToEntity(necrologyFormDto));
+    }
+
+    private String createNecrologyIdentifier(Necrology necrology) {
+        return necrology.getName()
+                .toLowerCase()
+                .trim()
+                .replace(" ", "-")
+                + "-"
+                + necrology.getId();
     }
 
     private void sendActivationEmail(NecrologyFormDto necrologyFormDto, String code) {
@@ -85,13 +104,25 @@ public class NecrologyService {
                     )
             );
         } catch (MessagingException e) {
-            throw new RuntimeException("Unable to send e-mail with activation link.");
+            throw new RuntimeException(ActivationManager.MESSAGING_EXCEPTION_TEXT);
         }
     }
 
+    public NecrologyDisplayDto mapToDisplayDto(Necrology necrology) {
+        return necrologyDisplayDtoMapper.mapEntityToDisplayDto(necrology);
+    }
+
     @Transactional
-    public Necrology save(NecrologyFormDto necrologyFormDto) throws IOException {
-        return necrologyRepository.save(necrologyFormDtoMapper.map(necrologyFormDto));
+    public String validateCode(String code) {
+        Optional<Necrology> optionalNecrology = necrologyRepository.findByCode(code);
+        return optionalNecrology
+                .map(this::activate)
+                .orElseThrow(EntityNotFoundException::new);
+    }
+
+    private String activate(Necrology necrology) {
+        necrology.setActivated(true);
+        return necrology.getNecrologyIdentifier();
     }
 
     public Optional<Necrology> findByIdentifier(String identifier) {
@@ -102,54 +133,14 @@ public class NecrologyService {
         return necrologyRepository.findActivated(identifier);
     }
 
-    private String createNecrologyIdentifier(Necrology necrology) {
-        return necrology.getName()
-                .toLowerCase()
-                .trim()
-                .replace(" ", "-")
-                + "-"
-                + necrology.getId();
-    }
-
-    public NecrologyDisplayDto mapFromNecrology(Necrology necrology) {
-        return necrologyDisplayDtoMapper.maptoDisplayDto(necrology);
-    }
-
-    public Page<NecrologyPreviewDto> findAllActivated(int pageNo) {
-        Page<Necrology> necrologies = findAllPaged(pageNo);
-        return necrologies
-                .map(necrologyPreviewDtoMapper::maptoPreviewDto);
+    public Page<NecrologyPreviewDto> findAllPaged(int pageNo) {
+        Pageable page = PageRequest.of(pageNo, PAGE_SIZE, Sort.by("id").descending());
+        return necrologyRepository.findAllBy(page)
+                .map(necrologyPreviewDtoMapper::mapEntityToPreviewDto);
     }
 
     public List<Necrology> findAllByActivatedIsTrue() {
         return necrologyRepository.findAllByActivatedIsTrue();
-    }
-
-    private Page<Necrology> findAllPaged(int pageNo) {
-        Pageable page = PageRequest.of(pageNo, PAGE_SIZE, Sort.by("id").descending());
-        return necrologyRepository.findAllBy(page);
-    }
-
-    @Transactional
-    public String validateCode(String code) {
-        Optional<Necrology> optionalNecrology = necrologyRepository.findByCode(code);
-        if (optionalNecrology.isPresent()) {
-            Necrology necrology = optionalNecrology.get();
-            necrology.setActivated(true);
-            return necrology.getNecrologyIdentifier();
-        } else {
-            throw new EntityNotFoundException();
-        }
-    }
-
-    @Transactional
-    public void deleteNotActivatedNecrologies() {
-        necrologyRepository.deleteAllByActivatedIsFalse();
-    }
-
-    public void deleteExpiredNecrologies() {
-        LocalDateTime now = LocalDateTime.now();
-        necrologyRepository.deleteAllByRemovingDateIsBefore(now);
     }
 
     public Optional<Necrology> findById(Long id) {
@@ -159,14 +150,14 @@ public class NecrologyService {
     public List<NecrologyPreviewDto> search(String word) {
         List<Necrology> necrologies = necrologyRepository.findByWord(word.toLowerCase());
         return necrologies.stream()
-                .map(necrologyPreviewDtoMapper::maptoPreviewDto)
+                .map(necrologyPreviewDtoMapper::mapEntityToPreviewDto)
                 .collect(Collectors.toList());
     }
 
     public List<NecrologyPreviewDto> findLast10Activated() {
         List<Necrology> necrologies = necrologyRepository.findAllByActivatedIsTrueOrderByIdDescLimited(LAST_ADDED_AMOUNT);
         return necrologies.stream()
-                .map(necrologyPreviewDtoMapper::maptoPreviewDto)
+                .map(necrologyPreviewDtoMapper::mapEntityToPreviewDto)
                 .collect(Collectors.toList());
     }
 
@@ -188,10 +179,10 @@ public class NecrologyService {
         return necrologyRepository.findAllByActivatedIsTrueOrderByIdDescLimited(last);
     }
 
-    public List<NecrologyModerationDto> findNecrologiesToModeration() {
+    public List<NecrologyModerationDto> findToModeration() {
         return necrologyRepository.findAllByOrderByIdDesc()
                 .stream()
-                .map(necrologyModerationDtoMapper::mapToModerationDto)
+                .map(necrologyModerationDtoMapper::mapEntityToModerationDto)
                 .collect(Collectors.toList());
     }
 
@@ -199,11 +190,13 @@ public class NecrologyService {
         necrologyRepository.deleteById(id);
     }
 
-    public NecrologyModerationEditDto getToUpdate(Long id) {
-        Optional<Necrology> necrologyOptional = findById(id);
-        return necrologyOptional
-                .map(necrologyModerationEditDtoMapper::mapToEditDto)
-                .orElseThrow(EntityNotFoundException::new);
+    public void deleteExpiredNecrologies() {
+        LocalDateTime now = LocalDateTime.now();
+        necrologyRepository.deleteAllByRemovingDateIsBefore(now);
+    }
+
+    public void deleteNotActivatedNecrologies() {
+        necrologyRepository.deleteAllByActivatedIsFalse();
     }
 
     @Transactional
@@ -211,24 +204,35 @@ public class NecrologyService {
         Optional<Necrology> necrologyOptional = necrologyRepository.findById(id);
         necrologyOptional.ifPresent(necrology -> {
             try {
-                necrology.setName(necrologyModerationEditDto.getName());
-                necrology.setBirthDate(necrologyModerationEditDto.getBirthDate());
-                necrology.setDeathDate(necrologyModerationEditDto.getDeathDate());
-                necrology.setPlaceOfOrigin(necrologyModerationEditDto.getPlaceOfOrigin());
-                necrology.setPlaceOfFuneral(necrologyModerationEditDto.getPlaceOfFuneral());
-                Optional<Gender> genderByName = Gender.findGenderByName(necrologyModerationEditDto.getGender());
-                genderByName.ifPresent(necrology::setGender);
-                necrology.setPictureBytes(necrologyModerationEditDto.getPictureFile().getBytes());
-                necrology.setTitle(necrologyModerationEditDto.getTitle());
-                List<Kinship> kinship = kinshipService.findAllByNameIn(necrologyModerationEditDto.getKinship());
-                necrology.setKinship(kinship);
-                necrology.setAddCrossAndLate(necrologyModerationEditDto.getAddCrossAndLate());
-                necrology.setRemovingDate(necrologyModerationEditDto.getRemoveDate());
-                necrology.setFuneralDetails(necrologyModerationEditDto.getFuneralDetails());
-                necrology.setAdditionalInfo(necrologyModerationEditDto.getAdditionalInfo());
+                setUpdate(necrologyModerationEditDto, necrology);
             } catch (IOException e) {
                 throw new RuntimeException("File could not be saved");
             }
         });
+    }
+
+    private void setUpdate(NecrologyModerationEditDto necrologyModerationEditDto, Necrology necrology) throws IOException {
+        necrology.setName(necrologyModerationEditDto.getName());
+        necrology.setBirthDate(necrologyModerationEditDto.getBirthDate());
+        necrology.setDeathDate(necrologyModerationEditDto.getDeathDate());
+        necrology.setPlaceOfOrigin(necrologyModerationEditDto.getPlaceOfOrigin());
+        necrology.setPlaceOfFuneral(necrologyModerationEditDto.getPlaceOfFuneral());
+        Optional<Gender> genderByName = Gender.findGenderByName(necrologyModerationEditDto.getGender());
+        genderByName.ifPresent(necrology::setGender);
+        necrology.setPictureBytes(necrologyModerationEditDto.getPictureFile().getBytes());
+        necrology.setTitle(necrologyModerationEditDto.getTitle());
+        List<Kinship> kinship = kinshipService.findAllByNameIn(necrologyModerationEditDto.getKinship());
+        necrology.setKinship(kinship);
+        necrology.setAddCrossAndLate(necrologyModerationEditDto.getAddCrossAndLate());
+        necrology.setRemovingDate(necrologyModerationEditDto.getRemoveDate());
+        necrology.setFuneralDetails(necrologyModerationEditDto.getFuneralDetails());
+        necrology.setAdditionalInfo(necrologyModerationEditDto.getAdditionalInfo());
+    }
+
+    public NecrologyModerationEditDto findToUpdate(Long id) {
+        Optional<Necrology> necrologyOptional = findById(id);
+        return necrologyOptional
+                .map(necrologyModerationEditDtoMapper::mapEntityToEditDto)
+                .orElseThrow(EntityNotFoundException::new);
     }
 }

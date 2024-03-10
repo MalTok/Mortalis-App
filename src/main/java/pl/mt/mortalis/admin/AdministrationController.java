@@ -22,7 +22,7 @@ public class AdministrationController {
 
     @GetMapping("/moderacja/kondolencje")
     String moderateCondolences(Model model) {
-        model.addAttribute("condolences", condolencesService.findCondolencesToModeration());
+        model.addAttribute("condolences", condolencesService.findToModeration());
         return "/administration/moderate-condolences";
     }
 
@@ -39,8 +39,7 @@ public class AdministrationController {
 
     @GetMapping("/moderacja/kondolencje/{id}/aktualizuj")
     String updateCondolencesForm(@PathVariable("id") Long id, Model model) {
-        CondolencesModerationEditDto condolencesModerationEditDto = condolencesService.getToUpdate(id);
-        model.addAttribute("condolencesEdit", condolencesModerationEditDto);
+        model.addAttribute("condolencesEdit", condolencesService.findToUpdate(id));
         return "/administration/moderate-condolences-edit-form";
     }
 
@@ -54,13 +53,13 @@ public class AdministrationController {
             return "/administration/moderate-condolences-edit-form";
         } else {
             condolencesService.update(id, condolencesModerationEditDto);
+            return "redirect:/administracja/moderacja/kondolencje";
         }
-        return "redirect:/administracja/moderacja/kondolencje";
     }
 
     @GetMapping("/moderacja/nekrologi")
     String moderateNecrologies(Model model) {
-        model.addAttribute("necrologies", necrologyService.findNecrologiesToModeration());
+        model.addAttribute("necrologies", necrologyService.findToModeration());
         return "/administration/moderate-necrologies";
     }
 
@@ -77,8 +76,7 @@ public class AdministrationController {
 
     @GetMapping("/moderacja/nekrologi/{id}/aktualizuj")
     String updateNecrologyForm(@PathVariable("id") Long id, Model model) {
-        NecrologyModerationEditDto necrologyModerationEditDto = necrologyService.getToUpdate(id);
-        model.addAttribute("necrologyEdit", necrologyModerationEditDto);
+        model.addAttribute("necrologyEdit", necrologyService.findToUpdate(id));
         return "/administration/moderate-necrology-edit-form";
     }
 
@@ -92,7 +90,7 @@ public class AdministrationController {
             return "/administration/moderate-necrology-edit-form";
         } else {
             necrologyService.update(id, necrologyModerationEditDto);
+            return "redirect:/administracja/moderacja/nekrologi";
         }
-        return "redirect:/administracja/moderacja/nekrologi";
     }
 }

@@ -8,10 +8,13 @@ import pl.mt.mortalis.validation.NotBadWords;
 @Data
 public class CondolencesFormDto {
     private Long necrologyId;
+
     private String fromName;
+
     @Email
     @NotBlank
     private String fromEmail;
+
     @NotBlank
     @NotBadWords(message = "Wulgaryzmy nie są dozwolone")
     private String message;

@@ -7,6 +7,7 @@ import lombok.Data;
 @Data
 public class CandleFormDto {
     private Long necrologyId;
+
     @Email
     @NotBlank
     private String email;

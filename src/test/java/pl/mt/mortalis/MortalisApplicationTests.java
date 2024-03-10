@@ -34,7 +34,7 @@ class MortalisApplicationTests {
         when(necrology.getDeathDate()).thenReturn(LocalDate.of(2024, 1, 1));
 
         // when
-        NecrologyDisplayDto necrologyDisplayDto = necrologyDisplayDtoMapper.maptoDisplayDto(necrology);
+        NecrologyDisplayDto necrologyDisplayDto = necrologyDisplayDtoMapper.mapEntityToDisplayDto(necrology);
 
         // then
         assertThat(necrologyDisplayDto.getAgeString()).isEqualTo("34 lat");
@@ -47,7 +47,7 @@ class MortalisApplicationTests {
         when(necrology.getDeathDate()).thenReturn(LocalDate.of(2024, 1, 1));
 
         // when
-        NecrologyDisplayDto necrologyDisplayDto = necrologyDisplayDtoMapper.maptoDisplayDto(necrology);
+        NecrologyDisplayDto necrologyDisplayDto = necrologyDisplayDtoMapper.mapEntityToDisplayDto(necrology);
 
         // then
         assertThat(necrologyDisplayDto.getAgeString()).isEqualTo("1 roku");
@@ -60,7 +60,7 @@ class MortalisApplicationTests {
         when(necrology.getDeathDate()).thenReturn(LocalDate.of(2024, 1, 4));
 
         // when
-        NecrologyDisplayDto necrologyDisplayDto = necrologyDisplayDtoMapper.maptoDisplayDto(necrology);
+        NecrologyDisplayDto necrologyDisplayDto = necrologyDisplayDtoMapper.mapEntityToDisplayDto(necrology);
 
         // then
         assertThat(necrologyDisplayDto.getAgeString()).isEqualTo("3 dni");
@@ -73,7 +73,7 @@ class MortalisApplicationTests {
         when(necrology.getDeathDate()).thenReturn(LocalDate.of(2024, 1, 2));
 
         // when
-        NecrologyDisplayDto necrologyDisplayDto = necrologyDisplayDtoMapper.maptoDisplayDto(necrology);
+        NecrologyDisplayDto necrologyDisplayDto = necrologyDisplayDtoMapper.mapEntityToDisplayDto(necrology);
 
         // then
         assertThat(necrologyDisplayDto.getAgeString()).isEqualTo("1 dnia");
@@ -86,7 +86,7 @@ class MortalisApplicationTests {
         when(necrology.getDeathDate()).thenReturn(LocalDate.of(2024, 1, 1));
 
         // when
-        NecrologyDisplayDto necrologyDisplayDto = necrologyDisplayDtoMapper.maptoDisplayDto(necrology);
+        NecrologyDisplayDto necrologyDisplayDto = necrologyDisplayDtoMapper.mapEntityToDisplayDto(necrology);
 
         // then
         assertThat(necrologyDisplayDto.getAgeString()).isEqualTo("0 dni");
@@ -99,7 +99,7 @@ class MortalisApplicationTests {
         when(necrology.getDeathDate()).thenReturn(LocalDate.of(2022, 1, 25));
 
         // when
-        NecrologyDisplayDto necrologyDisplayDto = necrologyDisplayDtoMapper.maptoDisplayDto(necrology);
+        NecrologyDisplayDto necrologyDisplayDto = necrologyDisplayDtoMapper.mapEntityToDisplayDto(necrology);
 
         // then
         assertThat(necrologyDisplayDto.getAgeString()).isEqualTo("3 tygodni");
@@ -112,7 +112,7 @@ class MortalisApplicationTests {
         when(necrology.getDeathDate()).thenReturn(LocalDate.of(2022, 1, 8));
 
         // when
-        NecrologyDisplayDto necrologyDisplayDto = necrologyDisplayDtoMapper.maptoDisplayDto(necrology);
+        NecrologyDisplayDto necrologyDisplayDto = necrologyDisplayDtoMapper.mapEntityToDisplayDto(necrology);
 
         // then
         assertThat(necrologyDisplayDto.getAgeString()).isEqualTo("1 tygodnia");
@@ -125,7 +125,7 @@ class MortalisApplicationTests {
         when(necrology.getDeathDate()).thenReturn(LocalDate.of(2024, 12, 1));
 
         // when
-        NecrologyDisplayDto necrologyDisplayDto = necrologyDisplayDtoMapper.maptoDisplayDto(necrology);
+        NecrologyDisplayDto necrologyDisplayDto = necrologyDisplayDtoMapper.mapEntityToDisplayDto(necrology);
 
         // then
         assertThat(necrologyDisplayDto.getAgeString()).isEqualTo("11 miesięcy");
@@ -138,7 +138,7 @@ class MortalisApplicationTests {
         when(necrology.getDeathDate()).thenReturn(LocalDate.of(2024, 2, 1));
 
         // when
-        NecrologyDisplayDto necrologyDisplayDto = necrologyDisplayDtoMapper.maptoDisplayDto(necrology);
+        NecrologyDisplayDto necrologyDisplayDto = necrologyDisplayDtoMapper.mapEntityToDisplayDto(necrology);
 
         // then
         assertThat(necrologyDisplayDto.getAgeString()).isEqualTo("1 miesiąca");

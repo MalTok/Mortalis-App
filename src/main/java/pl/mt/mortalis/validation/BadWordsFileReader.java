@@ -17,7 +17,6 @@ public class BadWordsFileReader {
                 InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
                 BufferedReader bufferedReader = new BufferedReader(inputStreamReader)
         ) {
-
             String nextLine;
             while ((nextLine = bufferedReader.readLine()) != null) {
                 badWords.add(nextLine);

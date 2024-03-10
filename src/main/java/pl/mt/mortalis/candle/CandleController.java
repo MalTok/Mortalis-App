@@ -26,7 +26,7 @@ public class CandleController {
             model.addAttribute("candle", candleFormDto);
             return "/candle/candle-form";
         } else {
-            candleService.activate(candleFormDto);
+            candleService.startActivation(candleFormDto);
             return "redirect:/zapal-swieczke/nieaktywny";
         }
     }

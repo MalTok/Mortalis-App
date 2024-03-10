@@ -30,7 +30,8 @@
             <a th:href="@{/strona/instrukcja}" href="/strona/instrukcja" class="buttons">instrukcja</a>
             <a th:href="@{/nekrolog/dodaj}" href="/nekrolog/dodaj" class="buttons">dodaj nekrolog</a>
             <a th:href="@{/wszystkie/strona/1}" href="/wszystkie/strona/1" class="buttons">wszystkie nekrologi</a>
-            <a th:href="@{/administruj}" href="/administruj" class="buttons">.:ADMIN:.</a>
+            <a th:href="@{/administruj}" href="/administruj" class="admin-buttons">.: ADMIN :.</a>
+            <a th:if="${#authorization.expression('isAuthenticated()')}" th:href="@{/logout}" href="/logout" class="admin-buttons">.: wyloguj :.</a>
         </div>
     </div>
 </header>

@@ -7,49 +7,51 @@
 <body>
 <main layout:fragment="content">
     <div class="main-page-container">
-        <div class="single-necrology">
-            <div class="single-necrology-box">
-                <div class="single-necrology-entry">
-                    <p>Z ogromnym smutkiem zawiadamiamy, że dnia
-                        <span th:text="${#temporals.format(necrology.deathDate, 'dd.MM.yyyy')}">20.01.2024</span>
-                        roku, w wieku
-                        <span th:text="${necrology.ageString}">100 lat</span>
-                        <span th:text="| ${necrology.genderVerb}|">odszedł Najdroższy</span>
-                    </p>
-                </div>
-                <div class="single-necrology-kinship">
-                    <p class="kinship" th:text="${necrology.kinship}">Dziadek, Tata, Syn</p>
-                </div>
-                <div class="single-necrology-person">
-                    <div class="single-necrology-late" th:if="${necrology.addCrossAndLate}">
-                        <span>Ś.</span>
-                        <i class="fa-solid fa-cross fa-2x"></i>
-                        <span>P.</span>
+        <div class="single-necrology-container">
+            <div class="single-necrology">
+                <div class="single-necrology-box">
+                    <div class="single-necrology-entry">
+                        <p>Z ogromnym smutkiem zawiadamiamy, że dnia
+                            <span th:text="${#temporals.format(necrology.deathDate, 'dd.MM.yyyy')}">20.01.2024</span>
+                            roku, w wieku
+                            <span th:text="${necrology.ageString}">100 lat</span>
+                            <span th:text="| ${necrology.genderVerb}|">odszedł Najdroższy</span>
+                        </p>
                     </div>
-                    <div class="single-necrology-person-info">
-                        <div class="single-necrology-person-photo" th:unless="${necrology.pictureBase64 == null or necrology.pictureBase64.isEmpty()}">
-                            <img th:src="'data:image/jpeg;base64,' + ${necrology.pictureBase64}" alt="Zdjęcie zmarłej osoby"/>
+                    <div class="single-necrology-kinship">
+                        <p class="kinship" th:text="${necrology.kinship}">Dziadek, Tata, Syn</p>
+                    </div>
+                    <div class="single-necrology-person">
+                        <div class="single-necrology-late" th:if="${necrology.addCrossAndLate}">
+                            <span>Ś.</span>
+                            <i class="fa-solid fa-cross fa-2x"></i>
+                            <span>P.</span>
                         </div>
-                        <div class="single-necrology-person-photo" th:if="${necrology.pictureBase64 == null or necrology.pictureBase64.isEmpty()}">
-                            <i class="fa-solid fa-ribbon fa-5x"></i>
-                        </div>
-                        <div class="single-necrology-name">
-                            <p th:text="${necrology.name}">Jan Kowalski</p>
+                        <div class="single-necrology-person-info">
+                            <div class="single-necrology-person-photo" th:unless="${necrology.pictureBase64 == null or necrology.pictureBase64.isEmpty()}">
+                                <img th:src="'data:image/jpeg;base64,' + ${necrology.pictureBase64}" alt="Zdjęcie zmarłej osoby"/>
+                            </div>
+                            <div class="single-necrology-person-photo" th:if="${necrology.pictureBase64 == null or necrology.pictureBase64.isEmpty()}">
+                                <i class="fa-solid fa-ribbon fa-5x"></i>
+                            </div>
+                            <div class="single-necrology-name">
+                                <p th:text="${necrology.name}">Jan Kowalski</p>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="single-necrology-title">
-                    <p th:text="${necrology.title}">Artysta, filantrop, lekarz</p>
-                </div>
-                <div class="single-necrology-place">
-                    <p th:text="|Miejsce pogrzebu: ${necrology.placeOfFuneral}|">Miejsce pogrzebu: Warszawa</p>
-                </div>
-                <div class="single-necrology-info">
-                    <p th:text="${necrology.funeralDetails}">Pogrzeb odbędzie się...</p>
-                </div>
-                <div class="single-necrology-additional">
-                    <p th:text="${necrology.additionalInfo}">Dodatkowe informacje: Zamiast zniczy prosimy wpłacić datek
-                        na dowolny cel charytatywny</p>
+                    <div class="single-necrology-title">
+                        <p th:text="${necrology.title}">Artysta, filantrop, lekarz</p>
+                    </div>
+                    <div class="single-necrology-place">
+                        <p th:text="|Miejsce pogrzebu: ${necrology.placeOfFuneral}|">Miejsce pogrzebu: Warszawa</p>
+                    </div>
+                    <div class="single-necrology-info">
+                        <p th:text="${necrology.funeralDetails}">Pogrzeb odbędzie się...</p>
+                    </div>
+                    <div class="single-necrology-additional">
+                        <p th:text="${necrology.additionalInfo}">Dodatkowe informacje: Zamiast zniczy prosimy wpłacić datek
+                            na dowolny cel charytatywny</p>
+                    </div>
                 </div>
             </div>
         </div>

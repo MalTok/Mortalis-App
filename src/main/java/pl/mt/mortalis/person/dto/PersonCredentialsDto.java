@@ -1,4 +1,4 @@
-package pl.mt.mortalis.person;
+package pl.mt.mortalis.person.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -9,6 +9,8 @@ import java.util.Set;
 @AllArgsConstructor
 public class PersonCredentialsDto {
     private final String email;
+
     private final String password;
+
     private final Set<String> roles;
 }

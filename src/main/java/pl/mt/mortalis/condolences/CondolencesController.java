@@ -25,7 +25,7 @@ public class CondolencesController {
             model.addAttribute("condolences", condolencesFormDto);
             return "/condolences/condolences-form";
         } else {
-            condolencesService.activate(condolencesFormDto);
+            condolencesService.startActivation(condolencesFormDto);
             return "redirect:/kondolencje/nieaktywny";
         }
     }

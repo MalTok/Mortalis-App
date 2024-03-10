@@ -22,7 +22,7 @@ public class OutdatedDataEraserService {
         this.necrologyService = necrologyService;
     }
 
-    //@Scheduled(cron = "1 * * * * ?")
+    //@Scheduled(cron = "1 * * * * ?") for testing purpose
     @Scheduled(cron = "0 0 12 * * ?")
     public void executeJob() {
         candleService.deleteExpiredCandles();

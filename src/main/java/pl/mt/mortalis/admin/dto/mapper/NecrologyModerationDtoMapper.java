@@ -6,7 +6,7 @@ import pl.mt.mortalis.necrology.Necrology;
 
 @Service
 public class NecrologyModerationDtoMapper {
-    public NecrologyModerationDto mapToModerationDto(Necrology necrology) {
+    public NecrologyModerationDto mapEntityToModerationDto(Necrology necrology) {
         NecrologyModerationDto necrologyModerationDto = new NecrologyModerationDto();
         necrologyModerationDto.setId(necrology.getId());
         necrologyModerationDto.setPlaceOfOrigin(necrology.getPlaceOfOrigin());
