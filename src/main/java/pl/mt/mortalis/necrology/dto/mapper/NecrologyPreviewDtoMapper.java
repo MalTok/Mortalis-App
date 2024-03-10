@@ -6,7 +6,7 @@ import pl.mt.mortalis.necrology.dto.NecrologyPreviewDto;
 
 @Service
 public class NecrologyPreviewDtoMapper {
-    public NecrologyPreviewDto maptoPreviewDto(Necrology necrology) {
+    public NecrologyPreviewDto mapEntityToPreviewDto(Necrology necrology) {
         NecrologyPreviewDto necrologyPreviewDto = new NecrologyPreviewDto();
         necrologyPreviewDto.setName(necrology.getName());
         necrologyPreviewDto.setTitle(necrology.getTitle());

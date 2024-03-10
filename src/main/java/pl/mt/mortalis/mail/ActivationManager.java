@@ -8,18 +8,20 @@ import java.util.UUID;
 
 @Service
 public class ActivationManager {
+    public static final String MESSAGING_EXCEPTION_TEXT = "Unable to send e-mail with activation link";
+
     public String createCode() {
         return UUID.randomUUID().toString();
     }
 
     private String createActivationMessageText(String code, String uriString) {
-        UriComponents uriCode = UriComponentsBuilder.fromUriString(uriString)
+        UriComponents uriLink = UriComponentsBuilder.fromUriString(uriString)
                 .queryParam("code", code)
                 .build();
         return  "<b>MORTALIS baza nekrologów</b><br/><br/>" +
                 "W celu weryfikacji <strong>kliknij lub skopiuj</strong> i wklej w przeglądarce ten link:<br/><br/>" +
-                "<a href=&quot; " + uriCode + "&quot>" +
-                uriCode +
+                "<a href=&quot;" + uriLink + "&quot;>" +
+                uriLink +
                 "</a>";
     }
 

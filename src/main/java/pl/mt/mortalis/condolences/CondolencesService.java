@@ -42,15 +42,27 @@ public class CondolencesService {
         this.condolencesModerationEditDtoMapper = condolencesModerationEditDtoMapper;
     }
 
-    public void activate(CondolencesFormDto condolencesFormDto) {
-        String code = activationManager.createCode();
-        Condolences condolences = createCondolences(condolencesFormDto, code);
-        condolencesRepository.save(condolences);
+    public void startActivation(CondolencesFormDto condolencesFormDto) {
         try {
+            String code = activationManager.createCode();
+            Condolences condolences = createCondolences(condolencesFormDto, code);
+            condolencesRepository.save(condolences);
             sendEmail(condolencesFormDto, code);
         } catch (MessagingException e) {
-            throw new RuntimeException("Unable to send e-mail with activation link.");
+            throw new RuntimeException(ActivationManager.MESSAGING_EXCEPTION_TEXT);
         }
+    }
+
+    private Condolences createCondolences(CondolencesFormDto condolencesFormDto, String code) {
+        Condolences condolences = new Condolences();
+        condolences.setFromName(!condolencesFormDto.getFromName().isEmpty() ? condolencesFormDto.getFromName() : "Anonim");
+        condolences.setFromEmail(condolencesFormDto.getFromEmail());
+        condolences.setMessage(condolencesFormDto.getMessage());
+        Optional<Necrology> optionalNecrology = necrologyService.findById(condolencesFormDto.getNecrologyId());
+        optionalNecrology.ifPresent(condolences::setNecrology);
+        condolences.setCode(code);
+        condolences.setActivated(false);
+        return condolences;
     }
 
     private void sendEmail(CondolencesFormDto condolencesFormDto, String code) throws MessagingException {
@@ -63,54 +75,30 @@ public class CondolencesService {
         );
     }
 
-    private Condolences createCondolences(CondolencesFormDto condolencesFormDto, String code) {
-        Condolences condolences = new Condolences();
-        if (!condolencesFormDto.getFromName().isEmpty()) {
-            condolences.setFromName(condolencesFormDto.getFromName());
-        } else {
-            condolences.setFromName("Anonim");
-        }
-        condolences.setFromEmail(condolencesFormDto.getFromEmail());
-        condolences.setMessage(condolencesFormDto.getMessage());
-        Optional<Necrology> optionalNecrology = necrologyService.findById(condolencesFormDto.getNecrologyId());
-        optionalNecrology.ifPresent(condolences::setNecrology);
-        condolences.setCode(code);
-        condolences.setActivated(false);
-        return condolences;
-    }
-
     @Transactional
     public String validateCode(String code) {
         Optional<Condolences> optionalCondolences = condolencesRepository.findByCode(code);
-        if (optionalCondolences.isPresent()) {
-            Condolences condolences = optionalCondolences.get();
-            condolences.setActivated(true);
-            return condolences.getNecrology().getNecrologyIdentifier();
-        } else {
-            throw new EntityNotFoundException();
-        }
+        return optionalCondolences
+                .map(this::activate)
+                .orElseThrow(EntityNotFoundException::new);
     }
 
-    public List<CondolencesModerationDto> findCondolencesToModeration() {
+    private String activate(Condolences condolences) {
+        condolences.setActivated(true);
+        return condolences.getNecrology().getNecrologyIdentifier();
+    }
+
+    public List<CondolencesModerationDto> findToModeration() {
         return condolencesRepository.findAllByOrderByIdDesc()
                 .stream()
-                .map(condolencesModerationDtoMapper::mapToModerationDto)
+                .map(condolencesModerationDtoMapper::mapEntityToModerationDto)
                 .collect(Collectors.toList());
     }
 
-    @Transactional
-    public void deleteNotActivatedCondolences() {
-        condolencesRepository.deleteAllByActivatedIsFalse();
-    }
-
-    public void deleteById(Long id) {
-        condolencesRepository.deleteById(id);
-    }
-
-    public CondolencesModerationEditDto getToUpdate(Long id) {
+    public CondolencesModerationEditDto findToUpdate(Long id) {
         Optional<Condolences> condolencesOptional = condolencesRepository.findById(id);
         return condolencesOptional
-                .map(condolencesModerationEditDtoMapper::mapToEditDto)
+                .map(condolencesModerationEditDtoMapper::mapEntityToEditDto)
                 .orElseThrow(EntityNotFoundException::new);
     }
 
@@ -121,5 +109,13 @@ public class CondolencesService {
             condolences.setFromName(condolencesModerationEditDto.getFromName());
             condolences.setMessage(condolencesModerationEditDto.getMessage());
         });
+    }
+
+    public void deleteById(Long id) {
+        condolencesRepository.deleteById(id);
+    }
+
+    public void deleteNotActivatedCondolences() {
+        condolencesRepository.deleteAllByActivatedIsFalse();
     }
 }

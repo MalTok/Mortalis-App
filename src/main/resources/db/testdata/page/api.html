@@ -19,7 +19,7 @@
 <h2>DOSTĘPNE DANE</h2>
 <br/>
 <div>
-    <h3>Lista wszystkich dodanych nekrologów</h3>
+    <h3>>> Lista wszystkich dodanych nekrologów <<</h3>
     <br/>
     <code>http://localhost:8080/api/v1/necrology</code>
     <br/>
@@ -73,13 +73,19 @@
     <br/>
 </div>
 <div>
-    <h3>Wyszukiwanie po imieniu i nazwisku, miejscu pogrzebu lub po obu parametrach jednocześnie</h3>
+    <h3>>> Wyszukiwanie po imieniu i nazwisku, miejscu pogrzebu lub po obu parametrach jednocześnie <<</h3>
     <br/>
     <code>http://localhost:8080/api/v1/necrology?name={name}&place={place}</code>
     <br/>
     <br/>
-    <p>{<b>name</b>} : fragment lub całość imienia i nazwiska (niewymagane)</p>
-    <p>{<b>place</b>} :fragment lub całość nazwy miejscowości uroczystości pogrzebowych (niewymagane)</p>
+    <ul>
+        <li>
+            {<b>name</b>} : fragment lub całość imienia i nazwiska (niewymagane)
+        </li>
+        <li>
+            {<b>place</b>} :fragment lub całość nazwy miejscowości uroczystości pogrzebowych (niewymagane)
+        </li>
+    </ul>
     <br/>
     <p>W przypadku gdy żaden z tych parametrów nie zostanie podany, zostanie wygenerowana lista WSZYSTKICH dodanych
         nekrologów.</p>
@@ -109,12 +115,14 @@
     <br/>
 </div>
 <div>
-    <h3>Wyszukiwanie ostatnich X dodanych nekrologów</h3>
+    <h3>>> Wyszukiwanie ostatnich X dodanych nekrologów <<</h3>
     <br/>
     <code>http://localhost:8080/api/v1/necrology?last={last}</code>
     <br/>
     <br/>
-    <p>{<b>last</b>} : wybrany limit ostatnio dodanych nekrologów (niewymagane)</p>
+    <ul>
+        <li>{<b>last</b>} : wybrany limit ostatnio dodanych nekrologów (niewymagane)</li>
+    </ul>
     <br/>
     <p>W przypadku gdy parametr nie zostanie podany, zostanie wygenerowana lista WSZYSTKICH dodanych nekrologów.</p>
     <br/>
@@ -167,12 +175,14 @@
     <br/>
 </div>
 <div>
-    <h3>Wyszukiwanie konkretnego nekrologu</h3>
+    <h3>>> Wyszukiwanie konkretnego nekrologu <<</h3>
     <br/>
     <code>http://localhost:8080/api/v1/necrology/{id}</code>
     <br/>
     <br/>
-    <p>{<b>id</b>} : wybrany numer nekrologu</p>
+    <ul>
+        <li>{<b>id</b>} : wybrany numer nekrologu</li>
+    </ul>
     <br/>
     <p><b>Przkładowe zapytanie GET:</b></p>
     <p>
@@ -197,7 +207,7 @@
     <br/>
 </div>
 <div>
-    <h3>Liczba wszystkich nekrologów w bazie</h3>
+    <h3>>> Liczba wszystkich nekrologów w bazie <<</h3>
     <br/>
     <code>http://localhost:8080/api/v1/necrology/count</code>
     <br/>

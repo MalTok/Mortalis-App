@@ -7,7 +7,7 @@ import pl.mt.mortalis.necrology.dto.NecrologyApiDto;
 
 @Service
 public class NecrologyApiDtoMapper {
-    public NecrologyApiDto mapToDto(Necrology necrology) {
+    public NecrologyApiDto mapEntityToDto(Necrology necrology) {
         NecrologyApiDto necrologyApiDto = new NecrologyApiDto();
         necrologyApiDto.setName(necrology.getName());
         necrologyApiDto.setBirthDate(necrology.getBirthDate());

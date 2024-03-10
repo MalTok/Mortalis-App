@@ -1,12 +1,8 @@
-package pl.mt.mortalis;
+package pl.mt.mortalis.controller;
 
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import pl.mt.mortalis.necrology.Necrology;
 import pl.mt.mortalis.necrology.NecrologyService;
 import pl.mt.mortalis.necrology.dto.NecrologyApiDto;
@@ -17,7 +13,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @RequestMapping(path = "/api/v1/necrology", produces = {MediaType.APPLICATION_JSON_VALUE})
-@Controller
+@RestController
 public class ApiController {
     private final NecrologyService necrologyService;
     private final NecrologyApiDtoMapper necrologyApiDtoMapper;
@@ -45,19 +41,23 @@ public class ApiController {
         }
         return ResponseEntity.ok(necrologyList
                 .stream()
-                .map(necrologyApiDtoMapper::mapToDto)
+                .map(necrologyApiDtoMapper::mapEntityToDto)
                 .collect(Collectors.toList()));
     }
 
     @GetMapping(value = "/{id}")
     ResponseEntity<NecrologyApiDto> getSingleNecrology(@PathVariable Long id) {
         Optional<NecrologyApiDto> optionalNecrology = necrologyService.findById(id)
-                .map(necrologyApiDtoMapper::mapToDto);
-        return optionalNecrology.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
+                .map(necrologyApiDtoMapper::mapEntityToDto);
+        return optionalNecrology
+                .map(ResponseEntity::ok)
+                .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     @GetMapping("/count")
     ResponseEntity<Integer> count() {
-        return ResponseEntity.ok(necrologyService.findAllByActivatedIsTrue().size());
+        return ResponseEntity.ok(necrologyService
+                .findAllByActivatedIsTrue()
+                .size());
     }
 }

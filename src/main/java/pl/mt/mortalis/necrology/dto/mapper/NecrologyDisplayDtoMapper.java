@@ -21,7 +21,7 @@ public class NecrologyDisplayDtoMapper {
         this.condolencesDisplayDtoMapper = condolencesDisplayDtoMapper;
     }
 
-    public NecrologyDisplayDto maptoDisplayDto(Necrology necrology) {
+    public NecrologyDisplayDto mapEntityToDisplayDto(Necrology necrology) {
         NecrologyDisplayDto necrologyDisplayDto = new NecrologyDisplayDto();
         necrologyDisplayDto.setName(necrology.getName());
         necrologyDisplayDto.setAgeString(getAgeString(necrology));
@@ -30,7 +30,7 @@ public class NecrologyDisplayDtoMapper {
         necrologyDisplayDto.setPlaceOfFuneral(necrology.getPlaceOfFuneral());
         necrologyDisplayDto.setGenderVerb(getGenderVerb(necrology));
         if (necrology.getPictureBytes() != null) {
-            necrologyDisplayDto.setPictureBase64(Base64.getEncoder().encodeToString(necrology.getPictureBytes()));
+            necrologyDisplayDto.setPictureBase64(getPictureBase64(necrology));
         }
         necrologyDisplayDto.setTitle(necrology.getTitle());
         necrologyDisplayDto.setKinship(getKinshipString(necrology));
@@ -43,10 +43,14 @@ public class NecrologyDisplayDtoMapper {
         return necrologyDisplayDto;
     }
 
+    private String getPictureBase64(Necrology necrology) {
+        return Base64.getEncoder().encodeToString(necrology.getPictureBytes());
+    }
+
     private List<CondolencesDisplayDto> getCondolencesList(Necrology necrology) {
         return necrology.getCondolences()
                 .stream()
-                .map(condolencesDisplayDtoMapper::mapToDisplayDto)
+                .map(condolencesDisplayDtoMapper::mapEntityToDisplayDto)
                 .collect(Collectors.toList());
     }
 

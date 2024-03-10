@@ -1,6 +1,8 @@
 package pl.mt.mortalis.person;
 
 import org.springframework.stereotype.Service;
+import pl.mt.mortalis.person.dto.PersonCredentialsDto;
+import pl.mt.mortalis.person.dto.mapper.PersonCredentialsDtoMapper;
 
 import java.util.Optional;
 
@@ -16,6 +18,6 @@ public class PersonService {
 
     public Optional<PersonCredentialsDto> findCredentialsByEmail(String email) {
         return personRepository.findByEmail(email)
-                .map(personCredentialsDtoMapper::map);
+                .map(personCredentialsDtoMapper::mapEntityToCredentialsDto);
     }
 }

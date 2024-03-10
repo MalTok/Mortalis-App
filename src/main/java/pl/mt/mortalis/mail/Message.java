@@ -7,6 +7,8 @@ import lombok.Data;
 @AllArgsConstructor
 public class Message {
     private String recipientEmail;
+
     private String subject;
+    
     private String text;
 }

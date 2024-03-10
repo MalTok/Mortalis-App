@@ -6,7 +6,7 @@ import pl.mt.mortalis.condolences.Condolences;
 
 @Service
 public class CondolencesModerationDtoMapper {
-    public CondolencesModerationDto mapToModerationDto(Condolences condolences) {
+    public CondolencesModerationDto mapEntityToModerationDto(Condolences condolences) {
         return new CondolencesModerationDto(
                 condolences.getId(),
                 condolences.getFromName(),

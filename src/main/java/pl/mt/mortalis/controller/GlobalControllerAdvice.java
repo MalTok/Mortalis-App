@@ -1,4 +1,4 @@
-package pl.mt.mortalis;
+package pl.mt.mortalis.controller;
 
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ModelAttribute;

@@ -1,4 +1,4 @@
-package pl.mt.mortalis;
+package pl.mt.mortalis.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,7 +27,7 @@ public class HomeController {
     @GetMapping("/wszystkie/strona/{page}")
     String showAll(@PathVariable("page") int page, Model model) {
         int pageNo = page - 1;
-        model.addAttribute("necrologies", necrologyService.findAllActivated(pageNo));
+        model.addAttribute("necrologies", necrologyService.findAllPaged(pageNo));
         model.addAttribute("currentPage", page);
         return "/necrology/all-necrologies";
     }

@@ -7,7 +7,10 @@ import lombok.Data;
 @AllArgsConstructor
 public class CondolencesModerationEditDto {
     private Long id;
+
     private String fromName;
+
     private String fromEmail;
+
     private String message;
 }

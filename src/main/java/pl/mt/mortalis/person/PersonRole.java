@@ -13,8 +13,10 @@ public class PersonRole {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @ManyToOne
     private Person person;
+    
     @Enumerated(EnumType.STRING)
     private Role role;
 

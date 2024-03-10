@@ -17,10 +17,9 @@ public interface NecrologyRepository extends JpaRepository<Necrology, Long> {
 
     List<Necrology> findAllByActivatedIsTrue();
 
-    //poprawić
-    @Query("SELECT DISTINCT n FROM Necrology n " +
-            "LEFT JOIN Candle can ON n.id = can.necrology.id AND can.activated = true " +
-            "LEFT JOIN Condolences con ON n.id = con.necrology.id AND con.activated = true " +
+    @Query("SELECT n FROM Necrology n " +
+            "LEFT JOIN FETCH Candle can ON n.id = can.necrology.id AND can.activated = true " +
+            "LEFT JOIN FETCH Condolences con ON n.id = con.necrology.id AND con.activated = true " +
             "WHERE n.necrologyIdentifier = ?1 AND n.activated = true")
     Optional<Necrology> findActivated(String identifier);
 
@@ -41,7 +40,7 @@ public interface NecrologyRepository extends JpaRepository<Necrology, Long> {
 
     List<Necrology> findAllByActivatedIsTrueAndNameContainsIgnoreCase(String name);
 
-    @Query(value = "SELECT * FROM Necrology WHERE activated = true ORDER BY id DESC LIMIT ?1", nativeQuery = true)
+    @Query(value = "SELECT * FROM necrology WHERE activated = true ORDER BY id DESC LIMIT ?1", nativeQuery = true)
     List<Necrology> findAllByActivatedIsTrueOrderByIdDescLimited(Integer last);
 
     List<Necrology> findAllByOrderByIdDesc();

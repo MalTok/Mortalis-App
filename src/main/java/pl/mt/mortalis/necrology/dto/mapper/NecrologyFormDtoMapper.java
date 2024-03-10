@@ -20,7 +20,7 @@ public class NecrologyFormDtoMapper {
         this.kinshipService = kinshipService;
     }
 
-    public Necrology map(NecrologyFormDto necrologyFormDto) throws IOException {
+    public Necrology mapToEntity(NecrologyFormDto necrologyFormDto) throws IOException {
         Necrology necrology = new Necrology();
         necrology.setName(necrologyFormDto.getName());
         necrology.setBirthDate(necrologyFormDto.getBirthDate());
@@ -35,12 +35,21 @@ public class NecrologyFormDtoMapper {
         necrology.setKinship(kinships);
         necrology.setAddCrossAndLate(necrologyFormDto.getAddCrossAndLate());
         if (necrologyFormDto.getRemoveAfter14Days()) {
-            necrology.setRemovingDate(LocalDateTime.now().plusDays(14).withHour(23).withMinute(59).withSecond(59));
+            necrology.setRemovingDate(getRemovingDate());
         }
         necrology.setFuneralDetails(necrologyFormDto.getFuneralDetails());
         necrology.setAdditionalInfo(necrologyFormDto.getAdditionalInfo());
         necrology.setAcceptedTerms(necrologyFormDto.getAcceptedTerms());
         necrology.setFromEmail(necrologyFormDto.getFromEmail());
         return necrology;
+    }
+
+    private LocalDateTime getRemovingDate() {
+        return LocalDateTime
+                .now()
+                .plusDays(14)
+                .withHour(23)
+                .withMinute(59)
+                .withSecond(59);
     }
 }

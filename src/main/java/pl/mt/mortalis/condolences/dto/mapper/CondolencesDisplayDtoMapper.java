@@ -7,7 +7,7 @@ import pl.mt.mortalis.condolences.dto.CondolencesDisplayDto;
 @Service
 public class CondolencesDisplayDtoMapper {
 
-    public CondolencesDisplayDto mapToDisplayDto(Condolences condolences) {
+    public CondolencesDisplayDto mapEntityToDisplayDto(Condolences condolences) {
         CondolencesDisplayDto condolencesDisplayDto = new CondolencesDisplayDto();
         condolencesDisplayDto.setFromName(condolences.getFromName());
         condolencesDisplayDto.setMessage(condolences.getMessage());

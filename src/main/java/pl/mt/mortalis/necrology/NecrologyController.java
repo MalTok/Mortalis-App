@@ -8,10 +8,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import pl.mt.mortalis.candle.dto.CandleFormDto;
 import pl.mt.mortalis.condolences.dto.CondolencesFormDto;
-import pl.mt.mortalis.necrology.dto.NecrologyDisplayDto;
 import pl.mt.mortalis.necrology.dto.NecrologyFormDto;
 
-import java.io.IOException;
 import java.util.Optional;
 
 @RequestMapping("/nekrolog")
@@ -37,11 +35,7 @@ public class NecrologyController {
             model.addAttribute("necrology", necrologyFormDto);
             return "/necrology/necrology-form";
         } else {
-            try {
-                necrologyService.activate(necrologyFormDto);
-            } catch (IOException e) {
-                throw new RuntimeException("File could not be saved");
-            }
+            necrologyService.startActivation(necrologyFormDto);
             return "redirect:/nekrolog/nieaktywny";
         }
     }
@@ -66,8 +60,7 @@ public class NecrologyController {
         Optional<Necrology> optionalNecrology = necrologyService.findActivated(identifier);
         if (optionalNecrology.isPresent()) {
             Necrology necrology = optionalNecrology.get();
-            NecrologyDisplayDto necrologyDisplayDto = necrologyService.mapFromNecrology(necrology);
-            model.addAttribute("necrology", necrologyDisplayDto);
+            model.addAttribute("necrology", necrologyService.mapToDisplayDto(necrology));
             return "/necrology/single-necrology";
         } else {
             return "/activation/not-activated";
@@ -84,7 +77,7 @@ public class NecrologyController {
             model.addAttribute("candle", candleformDto);
             return "/candle/candle-form";
         } else {
-            throw new EntityNotFoundException();
+            throw new EntityNotFoundException("Necrology could not be found");
         }
     }
 
@@ -98,7 +91,7 @@ public class NecrologyController {
             model.addAttribute("condolences", condolencesFormDto);
             return "/condolences/condolences-form";
         } else {
-            throw new EntityNotFoundException();
+            throw new EntityNotFoundException("Necrology could not be found");
         }
     }
 }

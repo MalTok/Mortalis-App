@@ -23,7 +23,7 @@ public class PageController {
         Optional<Page> pageOptional = pageService.findByUrl(url);
         if (pageOptional.isPresent()) {
             model.addAttribute("page", pageOptional.get());
-            return "page";
+            return "/page/page";
         } else {
             throw new EntityNotFoundException("This page cannot be found.");
         }
