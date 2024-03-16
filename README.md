@@ -110,7 +110,7 @@ The app lets you add necrologies of your late realtives, light them multiple vir
     </a>
   </div>
   <div>
-  <p>unit, mockito, assertj</p>
+  <p>JUnit, mockito, assertj</p>
   </div>
 </div>
 
@@ -167,14 +167,14 @@ Ready features:
 
 ## Screenshots
 
-![Example screenshot](./screenshots/screenshot1.png)
+![Example screenshot](./screenshots/ogolny.png)
 
 ## Setup
 
 Admin panel access:
 
 - login: admin@byom.de
-- passord: hard
+- password: hard
 
 What are the project requirements/dependencies? Where are they listed? A requirements.txt or a Pipfile.lock file perhaps? Where is it located?
 
@@ -201,10 +201,11 @@ Room for improvement:
   <li>Mobile phones display optimalization (especially necrology previews)</li>
 </ul>
 
-To do:
+Ideas:
 
 <ul>
   <li>"Request for a change" - option for users which allows to edit necrologies</li>
+  <li>Ability to choose icon which is displayed by te condolences</li>
   <li>Adding payment option</li>
   <li>When payment will be added - add ability to sign up for normal users, free limit of necrologis per month per user - necrologies above limit will be charged (for example for funeral companies)</li>
 </ul>
