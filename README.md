@@ -167,18 +167,33 @@ Ready features:
 
 ## Screenshots
 
-![Example screenshot](./screenshots/ogolny.png)
+![Ogolny widok](./screenshots/ogolny.png)
+![Nekrolog](./screenshots/nekrolog.png)
+![Wszystkie](./screenshots/wszystkie.png)
+![Dodatki](./screenshots/dodatki.png)
 
 ## Setup
+
+- CLONING REPOSITORY
+
+If you want to clone this repo and launch it for example in IntelliJ please write this in command line:
+
+<code>$ git clone https://github.com/MalTok/Mortalis-App.git</code>
+
+- INSTALLATION
+
+If ou want to download this repository and install it, please make sure that you have Java 17 (or newest) installed on your comupter. Also make sure that the enviroment variable PATH is properly set.
+
+Next please download the JAR file <b>mortalis-0.0.1-SNAPSHOT.jar</b>.
+In command line go to the directory with the JAR file and install it by writing this command:
+<code>$ java -jar mortalis-0.0.1-SNAPSHOT.jar</code>
+
+There are two configurations available: dev (default, recommended) and prod (requires MySQL installed).
 
 Admin panel access:
 
 - login: admin@byom.de
 - password: hard
-
-What are the project requirements/dependencies? Where are they listed? A requirements.txt or a Pipfile.lock file perhaps? Where is it located?
-
-Proceed to describe how to install / setup one's local environment / get started with the project.
 
 ## Usage
 
