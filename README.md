@@ -1,3 +1,5 @@
+![Menu](./screenshots/menu_logo.png)
+
 # MORTALIS - necrology web app
 
 > This web app allows you add and find necrologies - share funeral details, share private memory of late relative, search through other necrologies, light a virtual candle or write condolences.
