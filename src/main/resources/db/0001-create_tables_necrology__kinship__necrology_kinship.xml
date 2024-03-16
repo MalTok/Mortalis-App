@@ -5,6 +5,11 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
                           http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
 
+    <property name="gender" value="ENUM('FEMALE', 'MALE')" dbms="mysql"/>
+    <property name="gender" value="VARCHAR(6)" dbms="h2"/>
+    <property name="blob" value="VARBINARY" dbms="mysql"/>
+    <property name="blob" value="BLOB" dbms="h2"/>
+
     <changeSet id="0001-1" author="mt">
         <createTable tableName="necrology">
             <column name="id" type="BIGINT" autoIncrement="true">
@@ -21,17 +26,17 @@
             </column>
             <column name="place_of_origin" type="VARCHAR(100)"/>
             <column name="place_of_funeral" type="VARCHAR(100)"/>
-            <column name="gender" type="VARCHAR(6)">
+            <column name="gender" type="${gender}">
                 <constraints nullable="false"/>
             </column>
-            <column name="picture_bytes" type="BLOB"/>
+            <column name="picture_bytes" type="${blob}"/>
             <column name="title" type="VARCHAR(115)"/>
             <column name="add_cross_and_late" type="BOOLEAN"/>
             <column name="removing_date" type="TIMESTAMP"/>
-            <column name="funeral_details" type="VARCHAR(400)"/>
-            <column name="additional_info" type="VARCHAR(200)"/>
+            <column name="funeral_details" type="VARCHAR(450)"/>
+            <column name="additional_info" type="VARCHAR(250)"/>
             <column name="accepted_terms" type="BOOLEAN"/>
-            <column name="necrology_identifier" type="VARCHAR(300)"/>
+            <column name="necrology_identifier" type="VARCHAR(200)"/>
             <column name="code" type="VARCHAR(500)"/>
             <column name="activated" type="BOOLEAN"/>
             <column name="from_email" type="VARCHAR(500)"/>

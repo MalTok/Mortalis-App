@@ -47,7 +47,7 @@ VALUES
      'Po uroczystości pogrzebowej nastąpi odprowadzenie urny z prochami zmarłego.',
      'Rodzina prosi o nieskładanie kondolencji na cmentarzu.',
      true,
-     'jan-kowalski-1',
+     'jan-kowalski-16',
      '1943rjipefiprijfihfudhhsdjs3',
      true
      ),
@@ -65,7 +65,7 @@ VALUES
         'Przed pogrzebem możliwe prywatne pożegnanie ze zmarłą w kaplicy cmentarnej.',
         'Zamiast zniczy prosimy o wpłatę na dowolny cel charytatywny.',
         true,
-        'anastazja-nowakowska-długowska-2',
+        'anastazja-nowakowska-długowska-17',
         'fh818rijfihfdh2905ug80hsdjs5',
         true
     ),
@@ -83,7 +83,7 @@ VALUES
         'Po uroczystości kondukt żałobny odprowadzi zmarłego na miejsce wiecznego spoczynku.',
         'Rodzina zaprasza najbliższych na stypę do lokalu.',
         true,
-        'michał-bronowski-3',
+        'michał-bronowski-18',
         '21y2dfg44bfhmhsdjsjliuli7gg5',
         true
     );

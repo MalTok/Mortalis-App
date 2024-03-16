@@ -1,6 +1,8 @@
 package pl.mt.mortalis.necrology.dto.mapper;
 
 import org.springframework.stereotype.Service;
+import pl.mt.mortalis.candle.Candle;
+import pl.mt.mortalis.condolences.Condolences;
 import pl.mt.mortalis.condolences.dto.CondolencesDisplayDto;
 import pl.mt.mortalis.condolences.dto.mapper.CondolencesDisplayDtoMapper;
 import pl.mt.mortalis.kinship.Kinship;
@@ -37,10 +39,18 @@ public class NecrologyDisplayDtoMapper {
         necrologyDisplayDto.setAddCrossAndLate(necrology.getAddCrossAndLate());
         necrologyDisplayDto.setFuneralDetails(necrology.getFuneralDetails());
         necrologyDisplayDto.setAdditionalInfo(necrology.getAdditionalInfo());
-        necrologyDisplayDto.setCandlesAmount(necrology.getCandles().size());
+        necrologyDisplayDto.setCandlesAmount(getActivatedCandlesAmount(necrology));
         necrologyDisplayDto.setNecrologyIdentifier(necrology.getNecrologyIdentifier());
         necrologyDisplayDto.setCondolences(getCondolencesList(necrology));
         return necrologyDisplayDto;
+    }
+
+    private int getActivatedCandlesAmount(Necrology necrology) {
+        return necrology.getCandles()
+                .stream()
+                .filter(Candle::isActivated)
+                .toList()
+                .size();
     }
 
     private String getPictureBase64(Necrology necrology) {
@@ -50,6 +60,7 @@ public class NecrologyDisplayDtoMapper {
     private List<CondolencesDisplayDto> getCondolencesList(Necrology necrology) {
         return necrology.getCondolences()
                 .stream()
+                .filter(Condolences::isActivated)
                 .map(condolencesDisplayDtoMapper::mapEntityToDisplayDto)
                 .collect(Collectors.toList());
     }

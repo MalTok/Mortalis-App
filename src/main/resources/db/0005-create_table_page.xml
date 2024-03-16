@@ -5,10 +5,8 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
                           http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
 
-    <!--
-    <property name="textType" value="text" dbms="mysql"/>
-    <property name="textType" value="varchar(100000)" dbms="h2"/>
-    -->
+    <property name="text" value="text" dbms="mysql"/>
+    <property name="text" value="varchar(100000)" dbms="h2"/>
 
     <changeSet id="0005-1" author="mt">
         <createTable tableName="page">
@@ -17,7 +15,7 @@
             </column>
             <column name="title" type="VARCHAR(255)"/>
             <column name="url" type="VARCHAR(255)"/>
-            <column name="content" type="VARCHAR(100000)"/>
+            <column name="content" type="${text}"/>
         </createTable>
     </changeSet>
 

@@ -8,8 +8,8 @@ $(document).ready(function () {
 
     const nameMaxLength = 77;
     const titleMaxLength = 115;
-    const funeralDetailsMaxLength = 382;
-    const additionalInfoMaxLength = 200;
+    const funeralDetailsMaxLength = 450;
+    const additionalInfoMaxLength = 250;
 
     let $nameInfo = $("#nameInfo");
     let $titleInfo = $("#titleInfo");

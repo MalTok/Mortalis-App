@@ -156,14 +156,14 @@
                         Informacje o pogrzebie
                         <textarea class="form-control" id="funeralDetails" th:field="*{funeralDetails}" placeholder="Zacznij pisać..."></textarea>
                     </label>
-                    <p id="funeralDetailsInfo">Maksymalna długość wynosi 382 znaków</p>
+                    <p id="funeralDetailsInfo">Maksymalna długość wynosi 450 znaków</p>
                 </div>
                 <div class="mb-3">
                     <label class="form-label">
                         Dodatkowe informacje (np. o stypie, życzenia rodziny co do przynoszenia kwiatów czy zniczy)
                         <textarea class="form-control" id="additionalInfo" th:field="*{additionalInfo}" placeholder="Zacznij pisać..."></textarea>
                     </label>
-                    <p id="additionalInfoInfo">Maksymalna długość wynosi 200 znaków</p>
+                    <p id="additionalInfoInfo">Maksymalna długość wynosi 250 znaków</p>
                 </div>
                 <div class="mb-3">
                     <label class="form-check-label">
@@ -184,6 +184,7 @@
                         prawdziwe oraz zapoznałem/-am się z Regulaminem serwisu
                         <input type="checkbox" class="form-check-input" th:field="*{acceptedTerms}">
                     </label>
+                    <p th:errors="*{acceptedTerms}" class="error">Błędna opcja akceptacji regulaminu</p>
                 </div>
                 <div class="mb-3">
                     <label class="form-label">

@@ -8,6 +8,8 @@ import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 import org.springframework.format.annotation.DateTimeFormat;
 import pl.mt.mortalis.Gender;
 import pl.mt.mortalis.candle.Candle;
@@ -72,10 +74,12 @@ public class Necrology {
 
     private String necrologyIdentifier;
 
+    @Fetch(value = FetchMode.SUBSELECT)
     @OneToMany(mappedBy = "necrology", cascade = {CascadeType.PERSIST, CascadeType.REMOVE},
             orphanRemoval = true)
     private List<Candle> candles;
 
+    @Fetch(value = FetchMode.SUBSELECT)
     @OneToMany(mappedBy = "necrology", cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, orphanRemoval = true)
     private List<Condolences> condolences;
 

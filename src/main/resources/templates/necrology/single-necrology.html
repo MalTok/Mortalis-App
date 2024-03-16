@@ -92,8 +92,15 @@
                     <p>Nikt jeszcze nie zostawił kondolencji.</p>
                 </div>
                 <div class="single-necrology-single-condolences" th:each="condolence: ${necrology.condolences}" th:unless="${necrology.condolences.size() == 0}">
-                    <div class="single-necrology-single-condolences-from" th:text="${condolence.fromName}">Anna Nowak z rodziną</div>
-                    <div class="single-necrology-single-condolences-text" th:text="${condolence.message}">Wyrazy współczucia dla Was</div>
+                    <div class="single-necrology-single-condolences-box">
+                        <div class="">
+                            <i class="fa-solid fa-heart-crack"></i>
+                        </div>
+                        <div>
+                            <div class="single-necrology-single-condolences-from" th:text="${condolence.fromName}">Anna Nowak z rodziną</div>
+                            <div class="single-necrology-single-condolences-text" th:text="${condolence.message}">Wyrazy współczucia dla Was</div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
