@@ -130,12 +130,12 @@ public class NecrologyService {
     }
 
     public Optional<Necrology> findActivated(String identifier) {
-        return necrologyRepository.findActivated(identifier);
+        return necrologyRepository.findByNecrologyIdentifierIs(identifier);
     }
 
     public Page<NecrologyPreviewDto> findAllPaged(int pageNo) {
         Pageable page = PageRequest.of(pageNo, PAGE_SIZE, Sort.by("id").descending());
-        return necrologyRepository.findAllBy(page)
+        return necrologyRepository.findAllByActivatedIsTrue(page)
                 .map(necrologyPreviewDtoMapper::mapEntityToPreviewDto);
     }
 

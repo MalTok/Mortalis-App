@@ -45,6 +45,7 @@ public class NecrologyFormDto {
 
     private String additionalInfo;
 
+    @AssertTrue
     private Boolean acceptedTerms;
 
     @NotBlank

@@ -17,11 +17,7 @@ public interface NecrologyRepository extends JpaRepository<Necrology, Long> {
 
     List<Necrology> findAllByActivatedIsTrue();
 
-    @Query("SELECT n FROM Necrology n " +
-            "LEFT JOIN FETCH Candle can ON n.id = can.necrology.id AND can.activated = true " +
-            "LEFT JOIN FETCH Condolences con ON n.id = con.necrology.id AND con.activated = true " +
-            "WHERE n.necrologyIdentifier = ?1 AND n.activated = true")
-    Optional<Necrology> findActivated(String identifier);
+    Page<Necrology> findAllByActivatedIsTrue(Pageable page);
 
     @Query("SELECT n FROM Necrology n " +
             "WHERE " +
@@ -44,8 +40,6 @@ public interface NecrologyRepository extends JpaRepository<Necrology, Long> {
     List<Necrology> findAllByActivatedIsTrueOrderByIdDescLimited(Integer last);
 
     List<Necrology> findAllByOrderByIdDesc();
-
-    Page<Necrology> findAllBy(Pageable page);
 
     void deleteAllByRemovingDateIsBefore(LocalDateTime date);
 

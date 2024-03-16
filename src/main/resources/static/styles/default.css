@@ -252,8 +252,10 @@ form {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: flex-end;
+    justify-content: center;
     font-size: medium;
+    text-align: center;
+    margin-top: 6%;
     height: 20%;
 }
 
@@ -262,8 +264,9 @@ form {
     flex-direction: column;
     align-items: center;
     text-align: center;
+    text-wrap: normal;
     justify-content: center;
-    font-size: x-large;
+    font-size: larger;
     height: 40%;
 }
 
@@ -272,7 +275,7 @@ form {
     flex-direction: row;
     align-items: center;
     justify-content: space-evenly;
-    height: 20%;
+    height: 10%;
 }
 
 .necrology-preview-single-date {
@@ -373,12 +376,14 @@ form {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin-left: 10%;
+    text-align: center;
+    margin-left: 15%;
     width: 80%;
     height: 10%;
 }
 
-.single-necrology-entry > p > span:nth-child(1) {
+.single-necrology-entry > p > span:nth-child(1),
+.single-necrology-entry > p > span:nth-child(2) {
     font-weight: bold;
 }
 
@@ -390,7 +395,7 @@ form {
     text-align: center;
     width: 80%;
     height: 10%;
-    font-size: 150%;
+    font-size: 130%;
 }
 
 .single-necrology-person {
@@ -439,7 +444,7 @@ form {
     justify-content: center;
     text-align: center;
     height: 70%;
-    font-size: 270%;
+    font-size: 200%;
 }
 
 .single-necrology-title {
@@ -448,7 +453,7 @@ form {
     align-items: center;
     justify-content: center;
     text-align: center;
-    font-size: 150%;
+    font-size: 120%;
     width: 80%;
     height: 10%;
 }
@@ -467,7 +472,7 @@ form {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 70%;
+    width: 80%;
     height: 20%;
 }
 
@@ -476,7 +481,7 @@ form {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 60%;
+    width: 80%;
     height: 10%;
 }
 
@@ -534,6 +539,12 @@ form {
 
 .single-necrology-single-condolences {
     width: 90%;
+}
+
+.single-necrology-single-condolences-box {
+    display: flex;
+    flex-direction: row;
+    column-gap: 15px;
 }
 
 .single-necrology-single-condolences-from {
@@ -627,23 +638,25 @@ form {
 
 /* INSTRUCTION */
 
-ol {
+.instruction-container {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    font-size: larger;
     row-gap: 30px;
 }
 
-ol > li {
+.instruction-container > p {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     justify-content: center;
-    width: 90%;
+    width: 70%;
     row-gap: 20px;
 }
 
 .instruction-img {
-    max-width: 40%;
+    max-width: 60%;
+    align-self: center;
 }
