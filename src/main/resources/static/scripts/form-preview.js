@@ -26,18 +26,18 @@ $(document).ready(function () {
             let ageText;
 
             if (differenceInDays < 1) {
-                ageText = "w wieku 1 dnia";
+                ageText = "1 dnia";
             } else if (differenceInDays < 7) {
-                ageText = "w wieku " + differenceInDays + " dni";
+                ageText = differenceInDays + " dni";
             } else if (differenceInDays < 30) {
                 const weeks = Math.floor(differenceInDays / 7);
-                ageText = "w wieku " + weeks + (weeks === 1 ? " tygodnia" : " tygodni");
+                ageText = weeks + (weeks === 1 ? " tygodnia" : " tygodni");
             } else if (differenceInDays < 365) {
                 const months = Math.floor(differenceInDays / 30);
-                ageText = "w wieku " + months + (months === 1 ? " miesiąca" : " miesięcy");
+                ageText = months + (months === 1 ? " miesiąca" : " miesięcy");
             } else {
                 const years = Math.floor(differenceInDays / 365);
-                ageText = "w wieku " + years + (years === 1 ? " roku" : " lat");
+                ageText = years + (years === 1 ? " roku" : " lat");
             }
 
             $previewAge.text(ageText);
@@ -76,8 +76,14 @@ $(document).ready(function () {
         $(".form-preview-kinship").text(kinshipDescription);
     });
 
-    $("#addCrossAndLate").on('input', function () {
-        $(".form-preview-crossAndLate").show();
+    $("#addCrossAndLate").on('click', function () {
+        const $crossLateInput = $(".form-preview-crossAndLate");
+        if ($(this).is(':checked')) {
+            $crossLateInput.show();
+        } else {
+            $crossLateInput.hide();
+        }
+
     });
 
     $("#name").on('input', function () {
@@ -100,7 +106,24 @@ $(document).ready(function () {
 
     $("#placeOfFuneral").on('input', function () {
         const $placeOfFuneralInput = $(this);
-        $(".form-preview-place-of-funeral").text('Miejsce pogrzebu: ' + $placeOfFuneralInput.val());
+        let $placeOfFuneralPreview = $(".form-preview-place-of-funeral");
+
+        if ($placeOfFuneralInput.val()) {
+            $placeOfFuneralPreview.text('Miejsce pogrzebu: ' + $placeOfFuneralInput.val()).show();
+        } else {
+            $placeOfFuneralPreview.hide();
+        }
+    });
+
+    $("#placeOfOrigin").on('input', function () {
+        const $placeOfOriginInput = $(this);
+        let $placeOfOriginPreview = $(".form-preview-place-of-origin");
+
+        if ($placeOfOriginInput.val()) {
+            $placeOfOriginPreview.text('Z: ' + $placeOfOriginInput.val()).show();
+        } else {
+            $placeOfOriginPreview.hide();
+        }
     });
 
     $("#funeralDetails").on('input', function () {

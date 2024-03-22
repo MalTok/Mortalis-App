@@ -43,7 +43,8 @@
                         <p th:text="${necrology.title}">Artysta, filantrop, lekarz</p>
                     </div>
                     <div class="single-necrology-place">
-                        <p th:text="|Miejsce pogrzebu: ${necrology.placeOfFuneral}|">Miejsce pogrzebu: Warszawa</p>
+                        <p th:if="${!necrology.placeOfOrigin.isEmpty()}" th:text="|Z: ${necrology.placeOfOrigin}|">Z: Warszawa</p>
+                        <p th:if="${!necrology.placeOfFuneral.isEmpty()}" th:text="|Miejsce pogrzebu: ${necrology.placeOfFuneral}|">Miejsce pogrzebu: Warszawa</p>
                     </div>
                     <div class="single-necrology-info">
                         <p th:text="${necrology.funeralDetails}">Pogrzeb odbędzie się...</p>

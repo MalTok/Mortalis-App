@@ -11,6 +11,29 @@
     color: white;
 }
 
+header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    width: 100%;
+}
+
+.admin-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    margin-top: 5px;
+    width: 100%;
+    min-height: fit-content;
+    column-gap: 15px;
+}
+
+header > div:nth-child(2) {
+    width: 100%;
+}
+
 .header-container {
     display: flex;
     flex-direction: row;
@@ -64,7 +87,7 @@
     column-gap: 15px;
     row-gap: 5px;
     margin: 10px;
-    width: 60%;
+    width: 100%;
 }
 
 .footer-container {
@@ -119,7 +142,7 @@
     align-items: center;
     justify-content: center;
     font-size: large;
-    margin-top: 50px;
+    margin-top: 20px;
     margin-bottom: 50px;
     width: 100%;
     row-gap: 25px;
@@ -230,7 +253,7 @@ form {
     width: 100%;
     background-color: black;
     color: white;
-    row-gap: 10px;
+    row-gap: 40px;
 }
 
 .necrology-preview {
@@ -333,7 +356,8 @@ form {
 #nameInfo,
 #titleInfo,
 #funeralDetailsInfo,
-#additionalInfoInfo {
+#additionalInfoInfo,
+#pictureInfo {
     color: red;
 }
 
@@ -460,10 +484,10 @@ form {
 
 .single-necrology-place {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
-    justify-content: center;
-    width: 60%;
+    justify-content: space-evenly;
+    width: 70%;
     height: 5%;
 }
 

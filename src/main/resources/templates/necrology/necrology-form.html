@@ -47,6 +47,7 @@
                         <p class="form-preview-title"></p>
                     </div>
                     <div class="single-necrology-place">
+                        <p class="form-preview-place-of-origin"></p>
                         <p class="form-preview-place-of-funeral"></p>
                     </div>
                     <div class="single-necrology-info">
@@ -128,9 +129,10 @@
                 </div>
                 <div class="mb-3">
                     <label class="form-label">
-                        Zdjęcie zmarłej osoby
+                        Zdjęcie zmarłej osoby (Plik o wielkości maks. 5 MB)
                         <input type="file" class="form-control" id="pictureFile" th:field="*{pictureFile}" accept=".png, .jpeg, .jpg">
                     </label>
+                    <p id="pictureInfo">Maksymalny rozmiar pliku to 5 MB</p>
                 </div>
                 <div class="mb-3">
                     <label class="form-label">

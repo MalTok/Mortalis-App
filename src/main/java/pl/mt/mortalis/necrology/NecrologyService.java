@@ -3,6 +3,7 @@ package pl.mt.mortalis.necrology;
 import jakarta.mail.MessagingException;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -86,7 +87,8 @@ public class NecrologyService {
     }
 
     private String createNecrologyIdentifier(Necrology necrology) {
-        return necrology.getName()
+        String stripped = StringUtils.stripAccents(necrology.getName());
+        return stripped
                 .toLowerCase()
                 .trim()
                 .replace(" ", "-")

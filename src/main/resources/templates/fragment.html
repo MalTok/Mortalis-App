@@ -11,29 +11,34 @@
 </head>
 <body>
 <header th:fragment="header">
-    <div class="header-container">
-        <a th:href="@{/}" href="/">
-            <div class="logo-container">
-                <div class="flame">
-                    <i class="fa-solid fa-fire-flame-curved"></i>
+    <div class="admin-container">
+        <a th:href="@{/administruj}" href="/administruj" class="admin-buttons">.: ADMIN :.</a>
+        <a th:if="${#authorization.expression('isAuthenticated()')}" th:href="@{/logout}" href="/logout" class="admin-buttons">.: wyloguj :.</a>
+    </div>
+    <div>
+        <div class="header-container">
+            <a th:href="@{/}" href="/">
+                <div class="logo-container">
+                    <div class="flame">
+                        <i class="fa-solid fa-fire-flame-curved"></i>
+                    </div>
+                    <div class="app-name">
+                        <p>MORTALIS</p>
+                    </div>
+                    <div class="app-subtitle">
+                        <p>baza nekrologów</p>
+                    </div>
                 </div>
-                <div class="app-name">
-                    <p>MORTALIS</p>
-                </div>
-                <div class="app-subtitle">
-                    <p>baza nekrologów</p>
-                </div>
+            </a>
+            <div class="main-menu-container">
+                <a th:href="@{/}" href="/" class="buttons">strona główna</a>
+                <a th:href="@{/strona/instrukcja}" href="/strona/instrukcja" class="buttons">instrukcja</a>
+                <a th:href="@{/nekrolog/dodaj}" href="/nekrolog/dodaj" class="buttons">dodaj nekrolog</a>
+                <a th:href="@{/wszystkie/strona/1}" href="/wszystkie/strona/1" class="buttons">wszystkie nekrologi</a>
             </div>
-        </a>
-        <div class="main-menu-container">
-            <a th:href="@{/}" href="/" class="buttons">strona główna</a>
-            <a th:href="@{/strona/instrukcja}" href="/strona/instrukcja" class="buttons">instrukcja</a>
-            <a th:href="@{/nekrolog/dodaj}" href="/nekrolog/dodaj" class="buttons">dodaj nekrolog</a>
-            <a th:href="@{/wszystkie/strona/1}" href="/wszystkie/strona/1" class="buttons">wszystkie nekrologi</a>
-            <a th:href="@{/administruj}" href="/administruj" class="admin-buttons">.: ADMIN :.</a>
-            <a th:if="${#authorization.expression('isAuthenticated()')}" th:href="@{/logout}" href="/logout" class="admin-buttons">.: wyloguj :.</a>
         </div>
     </div>
+
 </header>
 <div th:fragment="necrology-preview">
     <div th:if="${necrologies.isEmpty()}">
