@@ -3,7 +3,7 @@
 # MORTALIS - necrology web app
 
 > This web app allows you add and find necrologies - share funeral details, share private memory of late relative, search through other necrologies, light a virtual candle or write condolences.
-> Live demo [_here_](https://).
+> Live demo [_here_](https://youtu.be/DRQPNL8EX_Q).
 
 ## Content of project
 
@@ -112,7 +112,7 @@ The app lets you add necrologies of your late realtives, light them multiple vir
     </a>
   </div>
   <div>
-  <p>JUnit, mockito, assertj</p>
+    <p>JUnit, mockito, assertj</p>
   </div>
 </div>
 
@@ -148,7 +148,7 @@ Ready features:
 
 <b>all added activated necrologies list with pagination</b>
 
-<b>showing only previously activated necrologies, candles and condolences in entire service</b>
+<b>showing only previously activated necrologies, candles and condolences in public part of the service</b>
 
 <b>showing last 10 added necrologies on main page as a preview of basic necrology information</b>
 
@@ -197,6 +197,8 @@ Admin panel access:
 - login: admin@byom.de
 - password: hard
 
+Inbox e-mail addresses for testing can be set up at: byom.de
+
 ## Usage
 
 <details>
@@ -222,7 +224,8 @@ Ideas:
 
 <ul>
   <li>"Request for a change" - option for users which allows to edit necrologies</li>
-  <li>Ability to choose icon which is displayed by te condolences</li>
+  <li>Ability to choose icon which is displayed by te condolences</li> 
+  <li>More necrology customization (like icons for diferent religions etc.)</li>
   <li>Adding payment option</li>
   <li>When payment will be added - add ability to sign up for normal users, free limit of necrologis per month per user - necrologies above limit will be charged (for example for funeral companies)</li>
 </ul>
@@ -234,4 +237,4 @@ Ideas:
 
 ## Contact
 
-Feel free to contact me via GitHub!
+Feel free to contact me via GitHub or e-mail!
