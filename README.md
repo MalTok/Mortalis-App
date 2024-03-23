@@ -192,6 +192,8 @@ Next please download the JAR file <b>mortalis-0.0.1-SNAPSHOT.jar</b>.
 In command line go to the directory with the JAR file and install it by writing this command:
 <code>$ java -jar mortalis-0.0.1-SNAPSHOT.jar</code>
 
+After these steps it will be available in your browser at <code>localhost:8080</code>.
+
 There are two configurations available: dev (default, recommended) and prod (requires MySQL installed).
 
 Admin panel access:
