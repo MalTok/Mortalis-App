@@ -2,8 +2,10 @@
 
 # MORTALIS - necrology web app
 
-> This web app allows you add and find necrologies - share funeral details, share private memory of late relative, search through other necrologies, light a virtual candle or write condolences.
-> Live demo [_here_](https://youtu.be/DRQPNL8EX_Q).
+> This web app allows you add and find necrologies - share funeral details, share private memory of late relative, search through other necrologies, light a virtual candle or write condolences.<br/><br/>
+> Overall look demo [_here_](https://youtu.be/DRQPNL8EX_Q).<br/>
+> Admin panel demo [_here_](https://youtu.be/SUeECTA2eac).<br/>
+> API demo [_here_](https://youtu.be/nIrDqsFL3Fc).
 
 ## Content of project
 
@@ -21,9 +23,9 @@
 ## General Information
 
 <details>
-<summary>Click here to see general information about <b>Mortalis</b>.</summary>
-<b>Mortalis</b> is designed strictly for polish users, so it has visual features used commonly in polish obituaries.
-The app lets you add necrologies of your late realtives, light them multiple virtual candles in memoriam, write condolences, search through other necrologies. It includes basic API, admin / moderator management of content. It's the place where you can mourn your close ones, leave few words of memories you shared with the late person etc.
+  <summary>Click here to see general information about <b>Mortalis</b>.</summary>
+  <b>Mortalis</b> is designed strictly for polish users, so it has visual features used commonly in polish obituaries.
+  The app lets you add necrologies of your late realtives, light them multiple virtual candles in memoriam, write condolences, search through other necrologies. It includes basic API, admin /     moderator management of content. It's the place where you can mourn your close ones, leave few words of memories you shared with the late person etc.
 </details>
 
 ## Technologies Used
@@ -203,7 +205,7 @@ Inbox e-mail addresses for testing can be set up at: byom.de
 
 <details>
   <summary>Click here to see possible usage of <b>Mortalis</b>.</summary>
-  This app can be used by any funeral home or by country-wide service managing obituaries. Implemented API can be used by various local services to gather info and statistics about locals who recently passed away.
+  This app can be used by any funeral home or by country-wide service managing obituaries. Implemented API can be used by various local services to gather info and statistics about locals who     recently passed away.
 </details>
 
 ## Project Status
