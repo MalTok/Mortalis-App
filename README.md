@@ -114,7 +114,7 @@
     </a>
   </div>
   <div>
-    <p>JUnit, mockito, assertj</p>
+    <p>JUnit, Mockito, AssertJ</p>
   </div>
 </div>
 
